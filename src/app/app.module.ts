@@ -10,19 +10,21 @@ import { LoginComponent } from './login/login.component';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import {
   MatButtonModule,
-  MatCardModule,
-  MatInputModule,
+  MatCardModule, MatExpansionModule,
+  MatInputModule, MatListModule,
   MatProgressBarModule,
   MatToolbarModule
 } from "@angular/material";
 import {FormsModule} from "@angular/forms";
+import { SemesterTableComponent } from './dashboard/semester-table/semester-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    SemesterTableComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,8 @@ import {FormsModule} from "@angular/forms";
     MatInputModule,
     MatProgressBarModule,
     MatCardModule,
+    MatExpansionModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

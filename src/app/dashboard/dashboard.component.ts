@@ -8,16 +8,20 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 })
 export class DashboardComponent implements OnInit {
 
+  public userData: any;
+
   constructor(private http: HttpClient) {
   }
 
   ngOnInit() {
-    //this.transcriptOfRecords();
-    //this.auth();
+    this.transcriptOfRecords();
   }
 
   private transcriptOfRecords() {
-    this.http.get('/tor').subscribe();
+    this.http.get('/overview-data').subscribe(
+      res => this.userData = res,
+      err => console.error
+    );
   }
 
 }

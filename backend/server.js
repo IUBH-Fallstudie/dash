@@ -13,7 +13,7 @@ app.use('/en', proxy('/en',
   }
 ));
 
-app.get('/tor', (req, res) => {
+app.get('/overview-data', (req, res) => {
   const cookie = req.headers.cookie;
   middleware.basicStats(cookie).then((data) => res.send(data));
 });
