@@ -9,9 +9,15 @@ export class SemesterTableComponent implements OnInit {
 
   @Input() semesterData;
 
+  displayedColumns: string[] = ['module', 'status'];
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  generateStatus(module) {
+
   }
 
 }

@@ -1,5 +1,18 @@
 <div class="semester-table">
-  <mat-list>
-    <mat-list-item></mat-list-item>
-  </mat-list>
+  <table mat-table [dataSource]="semesterData">
+    <ng-container matColumnDef="module">
+      <th mat-header-cell *matHeaderCellDef>Modul</th>
+      <td mat-cell *matCellDef="let module" class="mat-list-text"><h4 mat-line>{{module.id}}</h4><p mat-line>{{module.name}}</p></td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let module">
+        <span class="passed" *ngIf="module.status === 'P'">{{module.grade}} <span *ngIf="module.rating">({{module.rating}})</span></span>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </div>

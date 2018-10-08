@@ -12,11 +12,12 @@ import {
   MatButtonModule,
   MatCardModule, MatExpansionModule,
   MatInputModule, MatListModule,
-  MatProgressBarModule,
+  MatProgressBarModule, MatTableModule,
   MatToolbarModule
 } from "@angular/material";
 import {FormsModule} from "@angular/forms";
 import { SemesterTableComponent } from './dashboard/semester-table/semester-table.component';
+import { TorComponent } from './dashboard/tor/tor.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SemesterTableComponent } from './dashboard/semester-table/semester-tabl
     DashboardComponent,
     LoginComponent,
     ToolbarComponent,
-    SemesterTableComponent
+    SemesterTableComponent,
+    TorComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ import { SemesterTableComponent } from './dashboard/semester-table/semester-tabl
     MatCardModule,
     MatExpansionModule,
     MatListModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,21 @@
+table {
+  width: 100%;
+  max-width: 100%;
+}
+
+.mat-list-text {
+  color: rgba(0,0,0,.87);
+
+  padding: 10px 0 8px 0;
+
+  h4 {
+    font-size: 16px;
+  }
+  h4, p {
+    margin: 0;
+    font-weight: normal;
+  }
+  p {
+    opacity: 0.8;
+  }
+}

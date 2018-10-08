@@ -24,6 +24,7 @@ function splitWeightedOverall(str) {
 }
 
 function getTor($) {
+  // fix invalid html of IUBH page
   $('thead').each((i, thead) => {
     $(thead).find('td').replaceWith((i, element) => {
       return $(`<th>${$(element).html()}</th>`);
@@ -31,9 +32,15 @@ function getTor($) {
   });
   const tor = ttj.convert($.html(), {
     useFirstRowForHeadings: false,
-    headings: ['ID', 'Modul', 'Status', 'Note', 'Bewertung', 'Credits', 'Prüfungsdatum', 'Kurstyp', 'Versuch', 'Kommentar']
+    headings: ['id', 'name', 'status', 'grade', 'rating', 'credits', 'date', 'type', 'try', 'comment']
   });
   // remove legend
+  tor.pop();
+
+  // TODO: MAKE THIS CORRECT
+  // Remove other tables
+  tor.pop();
+  tor.pop();
   tor.pop();
 
   const sortedTor = [];
@@ -41,8 +48,11 @@ function getTor($) {
     let lastParentId;
     const sortedModules = [];
     for (let module of semester) {
-      if (!module['ID'].includes(lastParentId) || !lastParentId) {
-        lastParentId = module['ID'];
+      if (!module.id.includes(lastParentId) || !lastParentId) {
+        lastParentId = module.id;
+        // remove redundant information
+        module.name = module.name.replace(' (ME)', '');
+        module.name = module.name.replace(' (MP)', '');
         module.courses = [];
         sortedModules.push(module);
       } else {

@@ -1,0 +1,11 @@
+<div class="tor">
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let semesterData of tor; let i = index">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{i + 1}}. Semester</mat-panel-title>
+        <mat-panel-description>{{calcSemesterProgress(semesterData)}}%</mat-panel-description>
+      </mat-expansion-panel-header>
+      <dash-semester-table [semesterData]="semesterData"></dash-semester-table>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  private auth(user: string, password: string) {
+  public auth(user: string, password: string) {
     this.http.post('/en/', `login-form=login-form&user=${user}&password=${password}&login-referrer=`,
       {
         headers: new HttpHeaders(
