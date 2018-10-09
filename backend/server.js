@@ -1,10 +1,15 @@
 const proxy = require('http-proxy-middleware');
+const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 const path = require('path');
 
-const middleware = require('./service/middleware-service');
+const care = require('./service/care-service');
+const mycampus = require('./service/mycampus-service');
+
 const careUrl = 'https://care-fs.iubh.de/';
+
+app.use(bodyParser.json());
 
 app.use('/en', proxy('/en',
   {
@@ -13,9 +18,27 @@ app.use('/en', proxy('/en',
   }
 ));
 
-app.get('/overview-data', (req, res) => {
+app.post('/moodle/auth', (req, res) => {
+  mycampus.authMoodle(req.body.user, req.body.pass).then(
+    (authentication) => {
+      if (authentication === false) {
+        res.status(403).send(false);
+      } else {
+        res.send(authentication);
+      }
+    }
+  )
+});
+
+app.post('/moodle/overview', (req, res) => {
+  mycampus.getOverview(req.body.moodleId, req.body.moodleToken).then((overview) => {
+    res.send(overview);
+  });
+});
+
+app.get('/care/tor', (req, res) => {
   const cookie = req.headers.cookie;
-  middleware.basicStats(cookie).then((data) => res.send(data));
+  care.basicStats(cookie).then((data) => res.send(data));
 });
 
 app.use(express.static('dist'));

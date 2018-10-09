@@ -20,6 +20,7 @@ import {FormsModule} from "@angular/forms";
 import { SemesterTableComponent } from './dashboard/tor/semester-table/semester-table.component';
 import { TorComponent } from './dashboard/tor/tor.component';
 import { ModuleDetailComponent } from './dashboard/tor/module-detail/module-detail.component';
+import { OverviewComponent } from './dashboard/overview/overview.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ModuleDetailComponent } from './dashboard/tor/module-detail/module-deta
     ToolbarComponent,
     SemesterTableComponent,
     TorComponent,
-    ModuleDetailComponent
+    ModuleDetailComponent,
+    OverviewComponent
   ],
   imports: [
     BrowserModule,

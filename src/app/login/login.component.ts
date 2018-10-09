@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'dash-login',
@@ -12,12 +13,24 @@ export class LoginComponent implements OnInit {
   public user: string;
   public pass: string;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private as: AuthService) { }
 
   ngOnInit() {
   }
 
   public auth(user: string, password: string) {
+    this.http.post('/moodle/auth', {user: user, pass: password})
+      .subscribe(
+        res => {
+          this.as.user = res;
+          console.log(res);
+          this.router.navigate(['']);
+        },
+        err => {
+          console.error(err);
+        }
+      );
+
     this.http.post('/en/', `login-form=login-form&user=${user}&password=${password}&login-referrer=`,
       {
         headers: new HttpHeaders(
@@ -29,12 +42,10 @@ export class LoginComponent implements OnInit {
         )
       })
       .subscribe(
+        // Moodle will handle authentication
         res => {
-          this.router.navigate(['']);
         },
         err => {
-          //console.log(err);
-          this.router.navigate(['']);
         }
       )
   }

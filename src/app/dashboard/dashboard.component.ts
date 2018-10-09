@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'dash-dashboard',
@@ -10,18 +11,23 @@ export class DashboardComponent implements OnInit {
 
   public userData: any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private a: AuthService) {
   }
 
   ngOnInit() {
     this.transcriptOfRecords();
+    this.moodleOverview();
   }
 
   private transcriptOfRecords() {
-    this.http.get('/overview-data').subscribe(
+    this.http.get('/care/tor').subscribe(
       res => this.userData = res,
       err => console.error
     );
+  }
+
+  private moodleOverview() {
+    this.http.post('/moodle/overview', this.a.user).subscribe();
   }
 
 }
