@@ -37,12 +37,6 @@ function getTor($) {
   // remove legend
   tor.pop();
 
-  // TODO: MAKE THIS CORRECT
-  // Remove other tables
-  tor.pop();
-  tor.pop();
-  tor.pop();
-
   const sortedTor = [];
   for (let semester of tor) {
     let lastParentId = '';
@@ -61,6 +55,13 @@ function getTor($) {
     }
     sortedTor.push(sortedModules);
   }
+
+  $('.panel-heading').each((i, element) => {
+    sortedTor[i] = {
+      modules: sortedTor[i],
+      name: $(element).text().split(' (')[0],
+    };
+  });
 
   return sortedTor;
 }

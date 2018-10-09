@@ -12,7 +12,7 @@ import {
   MatButtonModule,
   MatCardModule, MatExpansionModule, MatIconModule,
   MatInputModule, MatListModule,
-  MatProgressBarModule, MatTableModule,
+  MatProgressBarModule, MatRippleModule, MatTableModule,
   MatToolbarModule
 } from "@angular/material";
 import {FormsModule} from "@angular/forms";
@@ -43,6 +43,7 @@ import { TorComponent } from './dashboard/tor/tor.component';
     MatListModule,
     MatTableModule,
     MatIconModule,
+    MatRippleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

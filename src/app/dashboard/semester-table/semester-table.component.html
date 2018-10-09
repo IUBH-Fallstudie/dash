@@ -1,20 +1,25 @@
 <div class="semester-table">
-  <table mat-table [dataSource]="semesterData">
+  <mat-table [dataSource]="semesterData">
     <ng-container matColumnDef="module">
-      <th mat-header-cell *matHeaderCellDef>Modul</th>
-      <td mat-cell *matCellDef="let module" class="mat-list-text"><h4 mat-line>{{module.id}}</h4><p mat-line>{{module.name}}</p></td>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Modul</mat-header-cell>
+      <mat-cell *matCellDef="let module" class="mat-list-text"><h4 mat-line>{{module.id}}</h4><p mat-line>{{module.name}}</p></mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef>Status</th>
-      <td mat-cell *matCellDef="let module">
-        <span class="passed" *ngIf="getStatus(module) === 'B'"><mat-icon>grade</mat-icon><span class="badge">{{module.grade}}</span></span>
-        <span class="enrolled" *ngIf="getStatus(module) === 'A'"><mat-icon>school</mat-icon><span class="badge">aktiv</span></span>
-        <span class="pending" *ngIf="getStatus(module) === ''"><span class="badge">ausstehend</span></span>
-      </td>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+      <mat-cell *matCellDef="let module">
+        <span class="passed" *ngIf="getStatus(module) === 'B'"><span class="badge">{{module.grade}} <mat-icon>grade</mat-icon></span></span>
+        <span class="enrolled" *ngIf="getStatus(module) === 'A'"><span class="badge">aktiv <mat-icon>school</mat-icon></span></span>
+        <span class="pending" *ngIf="getStatus(module) === '' || getStatus(module) === 'E'"><span class="badge">ausstehend</span></span>
+        <span class="exam-pending" *ngIf="getStatus(module) === 'EE'"><span class="badge">Klasur angemeldet</span></span>
+        <span class="failed" *ngIf="getStatus(module) === 'D'"><span class="badge">durchgefallen</span></span>
+        <span class="evaluating" *ngIf="getStatus(module) === 'M'"><span class="badge">in Benotung</span></span>
+        <span class="misc" *ngIf="getStatus(module) === 'KP'"><span class="badge">Kombinationsprüfung</span></span>
+        <span class="misc" *ngIf="getStatus(module) === 'MP'"><span class="badge">Modulprüfung</span></span>
+      </mat-cell>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" mat-ripple></mat-row>
+  </mat-table>
 </div>

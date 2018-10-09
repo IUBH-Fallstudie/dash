@@ -1,14 +1,10 @@
 @import "../../../_variables.scss";
 
-table {
-  width: 100%;
-  max-width: 100%;
-}
-
 .mat-list-text {
   color: rgba(0,0,0,.87);
-
-  padding: 10px 0 8px 0;
+  display: table-cell;
+  padding-top: 10px;
+  padding-bottom: 8px;
 
   h4 {
     font-size: 16px;
@@ -24,8 +20,18 @@ table {
 
 .badge {
   margin-left: 6px;
-  padding: 2px 4px;
+  padding: 4px 6px;
   border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+
+  mat-icon {
+    margin-left: 6px;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
 }
 
 .mat-column-status>span {
@@ -43,4 +49,39 @@ table {
 .pending .badge {
   background-color: #EEEEEE;
 }
+.failed .badge {
+  background-color: #FF5252;
+  color: #fff;
+}
+.exam-pending .badge {
+  background-color: #FFD740;
+}
+.evaluating .badge {
+  background-color: #64FFDA;
+}
+.misc .badge {
+  background-color: #EEEEEE;
+}
 
+.semester-table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+}
+.mat-row {
+  position: relative;
+  cursor: pointer;
+}
+
+mat-cell:first-of-type, mat-footer-cell:first-of-type, mat-header-cell:first-of-type {
+  flex-grow: 1.8;
+  flex-shrink: 0;
+}
+mat-cell:last-of-type, mat-footer-cell:last-of-type, mat-header-cell:last-of-type {
+  justify-content: flex-end;
+}
