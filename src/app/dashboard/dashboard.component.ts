@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.transcriptOfRecords();
-    this.moodleOverview();
+    //this.moodleOverview();
   }
 
   private transcriptOfRecords() {
@@ -27,7 +27,11 @@ export class DashboardComponent implements OnInit {
   }
 
   private moodleOverview() {
-    this.http.post('/moodle/overview', this.a.user).subscribe();
+    this.http.post('/moodle/overview', this.a.user).subscribe(
+      (res) => {
+        this.a.moodleOverview = res;
+      }
+    );
   }
 
 }

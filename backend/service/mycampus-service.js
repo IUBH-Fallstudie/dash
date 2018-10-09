@@ -54,8 +54,6 @@ module.exports = {
       const courseProgressList = await Promise.all(courseProgressPromises);
 
       return mergeCourseProgress(courseList, courseProgressList);
-
-      return courseList;
     } catch (e) {
       console.error(e);
       return false;
@@ -69,15 +67,28 @@ function mergeCourseProgress(courseList, courseProgressList) {
     if (courseList[i].category !== 5) {
       const course = {
         id: courseList[i].id,
-        shortName: courseList[i].shortName,
-        fullName: courseList[i].fullName,
+        shortName: courseList[i].shortname,
+        fullName: courseList[i].fullname,
+        quizzes: 0,
+        completedQuizzes: 0,
+        finished: false,
       };
 
-      let quizzes = 0;
-      let completedQuizzes = 0;
-      let done = false;
+      for (let quiz of courseProgressList[i].statuses) {
+        if (quiz.modname === 'quiz') {
+          course.quizzes++;
+          if (quiz.timecompleted !== 0) {
+            course.completedQuizzes++;
+          }
+        }
+        if (quiz.modname === 'feedback' && quiz.timecompleted !== 0) {
+          course.finished = true;
+        }
+      }
+      courseOverview.push(course);
     }
   }
+  return courseOverview;
 }
 
 // mod_quiz_get_quizzes_by_courses

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'dash-overview',
@@ -8,7 +9,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class OverviewComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(public a: AuthService) { }
 
   ngOnInit() {
   }
