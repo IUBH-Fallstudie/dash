@@ -1,3 +1,5 @@
+@import "../../../_variables.scss";
+
 table {
   width: 100%;
   max-width: 100%;
@@ -19,3 +21,26 @@ table {
     opacity: 0.8;
   }
 }
+
+.badge {
+  margin-left: 6px;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.mat-column-status>span {
+  display: flex;
+  align-items: center;
+}
+
+.passed .badge {
+  background-color: #69F0AE;
+}
+.enrolled .badge {
+  background-color: #3D5AFE;
+  color: #fff;
+}
+.pending .badge {
+  background-color: #EEEEEE;
+}
+

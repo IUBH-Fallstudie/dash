@@ -19,7 +19,7 @@ export class TorComponent implements OnInit {
     let passedModules = 0;
     let openModules = 0;
     for (const course of semester) {
-      course.status === 'P' ? passedModules++ : openModules++;
+      course.status === 'B' ? passedModules++ : openModules++;
     }
     return Math.floor(passedModules / (passedModules + openModules) * 100);
   }

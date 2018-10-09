@@ -5,7 +5,7 @@ const ttj = require('tabletojson');
 module.exports = {
   basicStats: async (cookie) => {
     const torHtml = await request({
-      url: 'https://care-fs.iubh.de/en/study/transcript-of-records.php',
+      url: 'https://care-fs.iubh.de/de/studium/notenuebersicht.php',
       headers: {
         Connection: 'keep-alive',
         'Cookie': cookie,
@@ -13,14 +13,14 @@ module.exports = {
     });
     const $ = cheerio.load(torHtml);
     return {
-      weightedOverall: splitWeightedOverall($('h4:contains("Weighted average overall:")').html()),
+      weightedOverall: splitWeightedOverall($('h4:contains("Gewichteter Durchschnitt Gesamt:")').html()),
       tor: getTor($)
     };
   }
 };
 
 function splitWeightedOverall(str) {
-  return str.split('Weighted average overall:')[1].replace('\n', '');
+  return str.split('Gewichteter Durchschnitt Gesamt:')[1].replace('\n', '');
 }
 
 function getTor($) {
@@ -45,10 +45,10 @@ function getTor($) {
 
   const sortedTor = [];
   for (let semester of tor) {
-    let lastParentId;
+    let lastParentId = '';
     const sortedModules = [];
     for (let module of semester) {
-      if (!module.id.includes(lastParentId) || !lastParentId) {
+      if (!module.id.split('-')[0].includes(lastParentId.split('-')[0]) || !lastParentId) {
         lastParentId = module.id;
         // remove redundant information
         module.name = module.name.replace(' (ME)', '');

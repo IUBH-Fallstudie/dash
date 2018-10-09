@@ -10,7 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import {
   MatButtonModule,
-  MatCardModule, MatExpansionModule,
+  MatCardModule, MatExpansionModule, MatIconModule,
   MatInputModule, MatListModule,
   MatProgressBarModule, MatTableModule,
   MatToolbarModule
@@ -42,6 +42,7 @@ import { TorComponent } from './dashboard/tor/tor.component';
     MatExpansionModule,
     MatListModule,
     MatTableModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

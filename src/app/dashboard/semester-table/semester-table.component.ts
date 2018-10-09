@@ -16,8 +16,21 @@ export class SemesterTableComponent implements OnInit {
   ngOnInit() {
   }
 
-  generateStatus(module) {
+  getStatus(module) {
+    if (module.courses.length === 1) {
+      return module.courses[0].status;
+    }
 
+    let lastStatus = '';
+    let hasOpenCourse = false;
+    for (let course of module.courses) {
+      if (course.status !== '') {
+        lastStatus = course.status;
+      } else {
+        hasOpenCourse = true;
+      }
+    }
+    return lastStatus === 'B' && hasOpenCourse ? 'A' : lastStatus;
   }
 
 }
