@@ -9,15 +9,17 @@ import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './login/login.component';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import {
+  MatBottomSheetModule,
   MatButtonModule,
   MatCardModule, MatExpansionModule, MatIconModule,
   MatInputModule, MatListModule,
-  MatProgressBarModule, MatRippleModule, MatTableModule,
+  MatProgressBarModule, MatRippleModule, MatTableModule, MatTabsModule,
   MatToolbarModule
 } from "@angular/material";
 import {FormsModule} from "@angular/forms";
-import { SemesterTableComponent } from './dashboard/semester-table/semester-table.component';
+import { SemesterTableComponent } from './dashboard/tor/semester-table/semester-table.component';
 import { TorComponent } from './dashboard/tor/tor.component';
+import { ModuleDetailComponent } from './dashboard/tor/module-detail/module-detail.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { TorComponent } from './dashboard/tor/tor.component';
     LoginComponent,
     ToolbarComponent,
     SemesterTableComponent,
-    TorComponent
+    TorComponent,
+    ModuleDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -44,8 +47,11 @@ import { TorComponent } from './dashboard/tor/tor.component';
     MatTableModule,
     MatIconModule,
     MatRippleModule,
+    MatBottomSheetModule,
+    MatTabsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ModuleDetailComponent],
 })
 export class AppModule { }

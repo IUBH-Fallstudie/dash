@@ -1,1 +1,5 @@
-<dash-tor [tor]="userData?.tor" *ngIf="userData"></dash-tor>
+<mat-tab-group backgroundColor="primary">
+  <mat-tab label="Dashboard">Übersicht</mat-tab>
+  <mat-tab label="Notenübersicht"><dash-tor [tor]="userData?.tor" *ngIf="userData"></dash-tor></mat-tab>
+  <mat-tab label="Kurse">Kurse</mat-tab>
+</mat-tab-group>

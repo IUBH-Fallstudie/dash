@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+@import "variables";
 
 * {
   box-sizing: border-box;
@@ -17,4 +17,8 @@ body {
 
 .mat-expansion-panel-body {
   padding: 0!important;
+}
+.mat-tab-header {
+  //border-top: solid 2px $primary;
+  //margin-top: -2px;
 }

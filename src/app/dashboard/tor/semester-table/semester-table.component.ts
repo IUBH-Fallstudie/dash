@@ -1,5 +1,5 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {MatSort, MatTableDataSource} from "@angular/material";
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {MatBottomSheet, MatSort, MatTableDataSource} from "@angular/material";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
@@ -17,11 +17,14 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 export class SemesterTableComponent implements OnInit {
 
   @Input() semesterData: any;
+  @Output() moduleDetailOpen: EventEmitter<any>;
 
   displayedColumns: string[] = ['module', 'status'];
 
   constructor() {
+    this.moduleDetailOpen = new EventEmitter<any>();
   }
+
 
   ngOnInit() {
   }
@@ -41,6 +44,10 @@ export class SemesterTableComponent implements OnInit {
       }
     }
     return lastStatus === 'B' && hasOpenCourse ? 'A' : lastStatus;
+  }
+
+  openModuleDetail(module: any) {
+    this.moduleDetailOpen.emit(module);
   }
 
 }
