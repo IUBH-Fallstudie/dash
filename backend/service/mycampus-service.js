@@ -11,7 +11,6 @@ module.exports = {
       });
 
       const clientInfo = await client.call({wsfunction: 'core_webservice_get_site_info'});
-
       return {
         fullName: clientInfo.fullname,
         firstName: clientInfo.firstname,
@@ -39,6 +38,7 @@ module.exports = {
           userid: userId,
         }
       });
+
 
       const courseProgressPromises = [];
       for (let course of courseList) {
@@ -77,11 +77,11 @@ function mergeCourseProgress(courseList, courseProgressList) {
       for (let quiz of courseProgressList[i].statuses) {
         if (quiz.modname === 'quiz') {
           course.quizzes++;
-          if (quiz.timecompleted !== 0) {
+          if (quiz.state === 2) {
             course.completedQuizzes++;
           }
         }
-        if (quiz.modname === 'feedback' && quiz.timecompleted !== 0) {
+        if (quiz.modname === 'feedback' && quiz.state === 1) {
           course.finished = true;
         }
       }

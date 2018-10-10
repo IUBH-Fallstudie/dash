@@ -22,3 +22,11 @@ body {
   //border-top: solid 2px $primary;
   //margin-top: -2px;
 }
+
+h1, h2, h3, h4, h5 {
+  font-weight: normal;
+}
+
+[hidden] {
+  display: none!important;
+}

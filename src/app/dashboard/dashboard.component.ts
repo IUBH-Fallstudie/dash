@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.transcriptOfRecords();
-    //this.moodleOverview();
+    this.moodleOverview();
   }
 
   private transcriptOfRecords() {
