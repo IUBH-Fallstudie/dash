@@ -21,7 +21,6 @@ import { SemesterTableComponent } from './dashboard/tor/semester-table/semester-
 import { TorComponent } from './dashboard/tor/tor.component';
 import { ModuleDetailComponent } from './dashboard/tor/module-detail/module-detail.component';
 import { OverviewComponent } from './dashboard/overview/overview.component';
-import { CoursesComponent } from './dashboard/courses/courses.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +31,7 @@ import { CoursesComponent } from './dashboard/courses/courses.component';
     SemesterTableComponent,
     TorComponent,
     ModuleDetailComponent,
-    OverviewComponent,
-    CoursesComponent
+    OverviewComponent
   ],
   imports: [
     BrowserModule,

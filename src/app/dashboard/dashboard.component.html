@@ -1,5 +1,5 @@
 <mat-tab-group backgroundColor="primary">
-  <mat-tab label="Dashboard"><dash-overview [tor]="userData?.tor"></dash-overview></mat-tab>
+  <mat-tab label="Dashboard"><dash-overview [tor]="userData?.tor" *ngIf="userData"></dash-overview></mat-tab>
   <mat-tab label="Notenübersicht"><dash-tor [tor]="userData?.tor" *ngIf="userData"></dash-tor></mat-tab>
-  <mat-tab label="Kurse"><dash-courses [tor]="userData?.tor" *ngIf="userData"></dash-courses></mat-tab>
+  <mat-tab label="Kurse">Kurse</mat-tab>
 </mat-tab-group>
