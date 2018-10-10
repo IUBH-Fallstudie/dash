@@ -28,6 +28,8 @@ export class TorComponent implements OnInit {
 
   openBottomSheet(moduleData): void {
     console.log(moduleData);
-    this.bottomSheet.open(ModuleDetailComponent);
+    this.bottomSheet.open(ModuleDetailComponent, {
+      data: moduleData
+    });
   }
 }

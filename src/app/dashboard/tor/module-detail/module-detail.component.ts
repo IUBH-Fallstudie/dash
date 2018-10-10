@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {MatBottomSheetRef} from "@angular/material";
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from "@angular/material";
 
 @Component({
   selector: 'dash-module-detail',
@@ -8,10 +8,15 @@ import {MatBottomSheetRef} from "@angular/material";
 })
 export class ModuleDetailComponent implements OnInit {
 
-  constructor(private bottomSheetRef: MatBottomSheetRef<ModuleDetailComponent>) { }
-
-  ngOnInit() {
+  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public module: any, private bottomSheetRef: MatBottomSheetRef<ModuleDetailComponent>) {
   }
 
-  // 'https://www.iubh-fernstudium.de/kurs/' + course.name.toLowerCase().replace(' ', '-')
+  ngOnInit() {
+    console.log(this.module);
+  }
+
+  openModule(name) {
+    window.open('https://www.iubh-fernstudium.de/kurs/' + name.toLowerCase().replace(' ', '-'));
+  }
+
 }

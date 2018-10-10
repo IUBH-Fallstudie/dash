@@ -1,3 +1,11 @@
-<p>
-  module-detail works!
-</p>
+<div class="module-detail">
+  <h3 mat-line>{{module.id}}</h3>
+  <mat-list>
+    <h3 mat-subheader>Kurse</h3>
+    <mat-list-item *ngFor="let course of module.courses">
+      <mat-icon matListIcon (click)="openModule(course.name)">class</mat-icon>
+      <h4 mat-line>{{course.id}}</h4>
+      <p mat-line>{{course.name}}</p>
+    </mat-list-item>
+  </mat-list>
+</div>
