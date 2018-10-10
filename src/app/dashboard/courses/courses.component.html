@@ -1,0 +1,13 @@
+<div class="search-input">
+  <mat-form-field>
+    <input matInput placeholder="Suche" [(ngModel)]="term">
+  </mat-form-field>
+</div>
+
+<mat-list>
+  <mat-list-item *ngFor="let course of courses" [hidden]="!course.id.toLowerCase().includes(term.toLowerCase()) && !course.name.toLowerCase().includes(term.toLowerCase())">
+    <h4 mat-line>{{course.id}}</h4>
+    <p mat-line> {{course.name}} </p>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>
