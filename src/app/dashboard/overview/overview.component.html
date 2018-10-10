@@ -1,16 +1,19 @@
 <div class="overview">
   <div class="active">
-    <h4>Aktive Kurse</h4>
-    <mat-card *ngFor="let course of activeCourses" [hidden]="course.finished">
-      <mat-card-title>{{course.shortName}}</mat-card-title>
-      <mat-card-subtitle>{{course.fullName}}</mat-card-subtitle>
-      <mat-card-content>
-        {{course.quizzes}}
-        {{course.completedQuizzes}}
-      </mat-card-content>
-    </mat-card>
-  </div>
-  <div class="finished">
-    <h4>Abgeschlossene Kurse</h4>
+    <h4 style="margin-top: 0;">Aktive Kurse</h4>
+    <div class="cards">
+      <a [href]="course.url" target="_blank" *ngFor="let course of a.moodleOverview.active">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>{{course.id}}</mat-card-title>
+            <mat-card-subtitle>{{course.name}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image [src]="course.img">
+          <mat-card-content>
+            <mat-progress-bar mode="determinate" [value]="course.progress.done / course.progress.all * 100" color="accent"></mat-progress-bar>
+          </mat-card-content>
+        </mat-card>
+      </a>
+    </div>
   </div>
 </div>

@@ -2,6 +2,14 @@
   padding: 18px 16px;
 }
 
+.cards {
+}
 mat-card {
   margin-bottom: 16px;
+  min-width: 340px;
+  max-width: 450px;
+}
+
+a {
+  text-decoration: none;
 }

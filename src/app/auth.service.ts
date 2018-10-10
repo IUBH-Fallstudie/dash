@@ -7,6 +7,14 @@ export class AuthService {
 
   constructor() { }
 
+  public get credentials(): any {
+    return JSON.parse(window.localStorage.getItem('credentials'));
+  }
+
+  public set credentials(credentials: any) {
+    window.localStorage.setItem('credentials', JSON.stringify(credentials));
+  }
+
   public get user(): any {
     return JSON.parse(window.localStorage.getItem('user'));
   }
@@ -15,7 +23,7 @@ export class AuthService {
     window.localStorage.setItem('user', JSON.stringify(userData));
   }
 
-  public get moodleOverview() {
+  public get moodleOverview(): any {
     return JSON.parse(window.localStorage.getItem('moodleOverview'));
   }
 

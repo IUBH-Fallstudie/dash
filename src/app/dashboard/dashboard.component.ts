@@ -27,8 +27,9 @@ export class DashboardComponent implements OnInit {
   }
 
   private moodleOverview() {
-    this.http.post('/moodle/overview', this.a.user).subscribe(
+    this.http.post('/moodle/overview', this.a.credentials).subscribe(
       (res) => {
+        console.log(res);
         this.a.moodleOverview = res;
       }
     );

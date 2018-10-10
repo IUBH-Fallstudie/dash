@@ -31,7 +31,7 @@ app.post('/moodle/auth', (req, res) => {
 });
 
 app.post('/moodle/overview', (req, res) => {
-  mycampus.getOverview(req.body.moodleId, req.body.moodleToken).then((overview) => {
+  mycampus.getOverview(req.body.user, req.body.pass).then((overview) => {
     res.send(overview);
   });
 });

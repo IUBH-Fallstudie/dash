@@ -13,4 +13,5 @@ export class ModuleDetailComponent implements OnInit {
   ngOnInit() {
   }
 
+  // 'https://www.iubh-fernstudium.de/kurs/' + course.name.toLowerCase().replace(' ', '-')
 }

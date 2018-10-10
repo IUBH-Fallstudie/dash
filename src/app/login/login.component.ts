@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         res => {
           this.as.user = res;
+          this.as.credentials = {user: user, pass: password};
           console.log(res);
           this.router.navigate(['']);
         },
