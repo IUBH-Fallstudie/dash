@@ -37,6 +37,18 @@ export class DataService {
     return this._raw.moodleCourses;
   }
 
+  public get activeMoodleCourses(): any[] {
+    const activeCourses = [];
+    for (const torCourse of this.allCourses) {
+      for (const moodleCourse of this.moodleCourses) {
+        if (torCourse.id === moodleCourse.shortname && torCourse.status === 'A') {
+          activeCourses.push(moodleCourse);
+        }
+      }
+    }
+    return activeCourses;
+  }
+
   public fetchRawInfo() {
     this.http.get('/care/tor').subscribe(
       (res: any) => {

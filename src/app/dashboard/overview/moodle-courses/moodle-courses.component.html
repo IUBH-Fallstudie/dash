@@ -2,7 +2,7 @@
   <h4 style="margin-top: 0;">Aktive Kurse</h4>
   <div class="cards">
 
-    <a [href]="course.url" target="_blank" *ngFor="let course of dataService.moodleCourses">
+    <a [href]="course.url" target="_blank" *ngFor="let course of dataService.activeMoodleCourses">
       <mat-card>
         <mat-card-header>
           <mat-card-title>{{course.shortname}}</mat-card-title>
