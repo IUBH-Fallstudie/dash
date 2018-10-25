@@ -1,0 +1,18 @@
+<div class="active">
+  <h4 style="margin-top: 0;">Aktive Kurse</h4>
+  <div class="cards">
+
+    <a [href]="course.url" target="_blank" *ngFor="let course of dataService.moodleCourses">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{course.shortname}}</mat-card-title>
+          <mat-card-subtitle>{{course.name}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="course.image">
+        <mat-card-content>
+          <mat-progress-bar mode="determinate" [value]="course.progress" color="accent"></mat-progress-bar>
+        </mat-card-content>
+      </mat-card>
+    </a>
+  </div>
+</div>

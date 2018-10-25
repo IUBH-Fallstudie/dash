@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {DataService} from "../../data.service";
 
 @Component({
   selector: 'dash-courses',
@@ -7,20 +8,11 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class CoursesComponent implements OnInit {
 
-  @Input() tor: any;
-  public courses = [];
   public term = '';
 
-  constructor() { }
+  constructor(public dataService: DataService) { }
 
   ngOnInit() {
-    for (let semester of this.tor) {
-      for (let module of semester.modules) {
-        for (let course of module.courses) {
-          this.courses.push(course);
-        }
-      }
-    }
   }
 
 }

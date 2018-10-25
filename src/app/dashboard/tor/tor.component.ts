@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MatBottomSheet} from "@angular/material";
 import {ModuleDetailComponent} from "./module-detail/module-detail.component";
+import {DataService} from "../../data.service";
 
 @Component({
   selector: 'dash-tor',
@@ -10,9 +11,7 @@ import {ModuleDetailComponent} from "./module-detail/module-detail.component";
 })
 export class TorComponent implements OnInit {
 
-  @Input() tor: any;
-
-  constructor(private bottomSheet: MatBottomSheet) {
+  constructor(private bottomSheet: MatBottomSheet, public dataService: DataService) {
   }
 
   ngOnInit() {}

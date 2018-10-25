@@ -62,7 +62,7 @@ class MoodleUser {
    * @return {Array<Object>} - The users cached personal information.
    */
   get info() {
-    return this.userInfo
+    return this.clientInfo
   }
 
   static _statusCheck(res) {
@@ -142,7 +142,7 @@ class MoodleUser {
         'avatar': $('.contentnode').first().first().last().text()
       };
 
-      return this.userInfo;
+      return this.clientInfo;
     } catch (err) {
       throw new UnhandledMoodleError(`Unable to fetch user info!`, err);
     }

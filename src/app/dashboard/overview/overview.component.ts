@@ -8,16 +8,9 @@ import {AuthService} from "../../auth.service";
 })
 export class OverviewComponent implements OnInit {
 
-  @Input('tor') tor: any;
-
-  constructor(public a: AuthService) {
+  constructor() {
   }
 
   ngOnInit() {
-  }
-
-  openMyCampus(url) {
-    console.log(url);
-    window.open(url);
   }
 }

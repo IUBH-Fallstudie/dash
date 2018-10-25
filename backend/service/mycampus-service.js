@@ -5,76 +5,91 @@ const moment = require('moment');
 
 module.exports = {
   authMoodle: async (user, pass) => {
+    return (await auth(user, pass)).clientInfo || false;
+  },
+
+  getOverview: async (user, pass) => {
     try {
-      const client = await moodle.init({
-        wwwroot: 'https://mycampus.iubh.de',
-        username: user,
-        password: pass,
-      });
+      const {client, clientInfo} = await auth(user, pass);
 
-      const clientInfo = await client.call({wsfunction: 'core_webservice_get_site_info'});
+      return await getCourseOverview(client, clientInfo.moodleId);
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
+  }
+};
 
-      await getCourseOverview(client, clientInfo.userid);
+async function getCourseOverview(client, userId) {
+  const basicInfoCourses = await client.call({
+    wsfunction: 'core_enrol_get_users_courses',
+    method: 'POST',
+    args: {'userid': userId}
+  });
 
-      return {
+  const courseIds = basicInfoCourses.map((course) => {
+    return course.id;
+  }).join(',');
+
+  const detailedInfoCourses = (await client.call({
+    wsfunction: 'core_course_get_courses_by_field',
+    method: 'POST',
+    args: {'field': 'ids', 'value': courseIds}
+  })).courses;
+
+  return mergeCourseInfos(basicInfoCourses, detailedInfoCourses);
+}
+
+function mergeCourseInfos(basicInfoCourses, detailedInfoCourses) {
+  const courses = [];
+  for (const detailedInfoCourse of detailedInfoCourses) {
+    // Einführungskurse filtern (category 3)
+    if (detailedInfoCourse.categoryid !== 5) {
+      const courseInfo = {
+        id: detailedInfoCourse.id,
+        url: 'https://mycampus.iubh.de/course/view.php?id=' + detailedInfoCourse.id,
+        name: detailedInfoCourse.displayname,
+        shortname: detailedInfoCourse.shortname,
+        // Frag mich nicht, warum die API da ein 'webservice/' hat, was zu einem Error führt. Es ist eben so.
+        image: detailedInfoCourse.overviewfiles[0].fileurl.replace('webservice/', ''),
+      };
+
+      for (const basicInfoCourse of basicInfoCourses) {
+        if (detailedInfoCourse.id === basicInfoCourse.id) {
+          courseInfo.progress = basicInfoCourse.progress;
+        }
+      }
+
+      courses.push(courseInfo);
+    }
+  }
+  return courses;
+}
+
+async function auth(user, pass) {
+  try {
+    const client = await moodle.init({
+      wwwroot: 'https://mycampus.iubh.de',
+      username: user,
+      password: pass,
+    });
+
+    const clientInfo = await client.call({wsfunction: 'core_webservice_get_site_info'});
+
+    return {
+      client: client,
+      clientInfo: {
         fullName: clientInfo.fullname,
         firstName: clientInfo.firstname,
         lastName: clientInfo.lastname,
         moodleId: clientInfo.userid,
         moodleToken: client.token,
-      };
-    } catch (e) {
-      console.error(e);
-      return false;
-    }
-  },
-
-  getOverview: async (user, pass) => {
-    const moodleUser = new MoodleUser(user, pass, 'https://mycampus.iubh.de');
-    await moodleUser.login();
-    return moodleUser.fetchModules();
+      }
+    };
+  } catch (e) {
+    console.error(e);
+    return false;
   }
-};
-
-
-async function getCourseOverview(client, userId) {
-  const courses = await client.call({
-    wsfunction: 'core_enrol_get_users_courses',
-    method: "POST",
-    args: {'userid': userId}
-  });
-
-  const courseIds = courses.map((course) => {
-    return course.id;
-  }).join(',');
-
-  const courseIdsArray = courses.map((course) => {
-    return course.id;
-  });
-
-  const coursesDetails = await client.call({
-    wsfunction: 'core_course_get_courses_by_field',
-    method: "POST",
-    args: {'field': 'ids', 'value': courseIds}
-  });
-
-  const navOptions = await client.call({
-    wsfunction: 'core_course_get_user_navigation_options',
-    method: "POST",
-    args: {'courseids': courseIdsArray}
-  });
-
-
-  const today = moment().unix();
-
-  courses.forEach((course) => {
-    const navOptions = client.call({
-      wsfunction: 'core_completion_get_course_completion_status',
-      method: "POST",
-      args: {'courseid': course.id, 'userid': userId}
-    }).then(console.log);
-
-  });
 }
 
 // mod_quiz_get_quizzes_by_courses

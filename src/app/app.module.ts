@@ -22,6 +22,7 @@ import { TorComponent } from './dashboard/tor/tor.component';
 import { ModuleDetailComponent } from './dashboard/tor/module-detail/module-detail.component';
 import { OverviewComponent } from './dashboard/overview/overview.component';
 import { CoursesComponent } from './dashboard/courses/courses.component';
+import { MoodleCoursesComponent } from './dashboard/overview/moodle-courses/moodle-courses.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CoursesComponent } from './dashboard/courses/courses.component';
     TorComponent,
     ModuleDetailComponent,
     OverviewComponent,
-    CoursesComponent
+    CoursesComponent,
+    MoodleCoursesComponent
   ],
   imports: [
     BrowserModule,

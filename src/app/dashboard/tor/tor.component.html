@@ -1,6 +1,6 @@
 <div class="tor">
   <mat-accordion>
-    <mat-expansion-panel *ngFor="let semesterData of tor; let i = index">
+    <mat-expansion-panel *ngFor="let semesterData of dataService.transcriptOfRecords.tor">
       <mat-expansion-panel-header>
         <mat-panel-title>{{semesterData.name}}</mat-panel-title>
         <!--<mat-panel-description *ngIf="semesterData.name.includes('Semester')">{{calcSemesterProgress(semesterData.modules)}}%</mat-panel-description>-->
