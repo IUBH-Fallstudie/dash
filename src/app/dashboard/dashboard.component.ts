@@ -45,7 +45,9 @@ export class DashboardComponent implements OnInit {
 
   openSearch() {
     this.searchOpen = true;
-    this.meta.updateTag({name: 'theme-color', content: '#e68c74'});
+    setTimeout(() => {
+      this.meta.updateTag({name: 'theme-color', content: '#e68c74'});
+    }, 300);
   }
 
   closeSearch() {
