@@ -1,6 +1,8 @@
 <div class="courses" [@fadeInOut]="closed ? 'close' : 'open'" (@fadeInOut.done)="onAnimationEvent($event)">
   <mat-toolbar color="accent">
-    <button mat-icon-button (click)="closed = true;"><mat-icon>arrow_back</mat-icon></button>
+    <button mat-icon-button (click)="closed = true;">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
     <div class="search-input">
       <mat-form-field appearance="standard" color="primary">
         <input matInput placeholder="Suche" [(ngModel)]="term" #searchInput="matInput">
@@ -11,12 +13,14 @@
     </div>
   </mat-toolbar>
 
-  <mat-list>
-    <mat-list-item *ngFor="let course of dataService.allCourses"
-                   [hidden]="!course.id.toLowerCase().includes(term.toLowerCase()) && !course.name.toLowerCase().includes(term.toLowerCase())">
-      <h4 mat-line>{{course.id}}</h4>
-      <p mat-line> {{course.name}} </p>
-      <mat-divider></mat-divider>
-    </mat-list-item>
-  </mat-list>
+    <mat-list>
+      <cdk-virtual-scroll-viewport class="list" itemSize="72">
+      <mat-list-item *cdkVirtualFor="let course of dataService.allCourses | searchCourses:term; templateCacheSize: dataService.allCourses.length">
+        <h4 mat-line>{{course.id}}</h4>
+        <p mat-line> {{course.name}} </p>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+      </cdk-virtual-scroll-viewport>
+    </mat-list>
+
 </div>

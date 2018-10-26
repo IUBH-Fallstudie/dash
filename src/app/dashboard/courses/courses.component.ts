@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, Pipe, PipeTransform, ViewChild} from '@angular/core';
 import {DataService} from "../../data.service";
 import {MatInput} from "@angular/material";
 import {animate, state, style, transition, trigger, AnimationEvent} from "@angular/animations";
@@ -55,4 +55,17 @@ export class CoursesComponent implements OnInit {
     }
   }
 
+}
+
+@Pipe({
+  name: 'searchCourses',
+  pure: false
+})
+export class SearchCoursesFilter implements PipeTransform {
+  transform(courses: any[], term: string): any[] {
+    if (term !== '') {
+      return courses.filter(course => !(!course.id.toLowerCase().includes(term.toLowerCase()) && !course.name.toLowerCase().includes(term.toLowerCase())));
+    }
+    return courses;
+  }
 }

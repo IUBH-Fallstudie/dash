@@ -21,8 +21,9 @@ import { SemesterTableComponent } from './dashboard/tor/semester-table/semester-
 import { TorComponent } from './dashboard/tor/tor.component';
 import { ModuleDetailComponent } from './dashboard/tor/module-detail/module-detail.component';
 import { OverviewComponent } from './dashboard/overview/overview.component';
-import { CoursesComponent } from './dashboard/courses/courses.component';
+import {CoursesComponent, SearchCoursesFilter} from './dashboard/courses/courses.component';
 import { MoodleCoursesComponent } from './dashboard/overview/moodle-courses/moodle-courses.component';
+import {ScrollingModule} from "@angular/cdk/scrolling";
 
 @NgModule({
   declarations: [
@@ -35,11 +36,13 @@ import { MoodleCoursesComponent } from './dashboard/overview/moodle-courses/mood
     ModuleDetailComponent,
     OverviewComponent,
     CoursesComponent,
-    MoodleCoursesComponent
+    MoodleCoursesComponent,
+    SearchCoursesFilter,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ScrollingModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
