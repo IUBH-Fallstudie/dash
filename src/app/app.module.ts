@@ -25,6 +25,7 @@ import {CoursesComponent, SearchCoursesFilter} from './dashboard/courses/courses
 import { MoodleCoursesComponent } from './dashboard/overview/moodle-courses/moodle-courses.component';
 import {ScrollingModule} from "@angular/cdk/scrolling";
 import { BasicStatsComponent } from './dashboard/overview/basic-stats/basic-stats.component';
+import { LinksComponent } from './dashboard/links/links.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { BasicStatsComponent } from './dashboard/overview/basic-stats/basic-stat
     MoodleCoursesComponent,
     SearchCoursesFilter,
     BasicStatsComponent,
+    LinksComponent,
   ],
   imports: [
     BrowserModule,
