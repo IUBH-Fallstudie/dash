@@ -1,0 +1,11 @@
+<div class="basic-stats">
+  <div class="progress">
+    <h3>Fortschritt</h3>
+    <mat-slider [max]="allProgress.all" [(ngModel)]="allProgress.passed"></mat-slider>
+    <span>{{allProgress.passed}} Kurse von {{allProgress.all}} abgeschlossen</span>
+  </div>
+  <div class="weighted-average">
+    <span class="value">{{dataService.transcriptOfRecords.weightedOverall}}</span>
+    <span class="title">Gesamtnote</span>
+  </div>
+</div>

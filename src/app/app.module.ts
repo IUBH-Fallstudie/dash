@@ -13,7 +13,7 @@ import {
   MatButtonModule,
   MatCardModule, MatExpansionModule, MatIconModule,
   MatInputModule, MatListModule,
-  MatProgressBarModule, MatRippleModule, MatTableModule, MatTabsModule,
+  MatProgressBarModule, MatRippleModule, MatSliderModule, MatTableModule, MatTabsModule,
   MatToolbarModule
 } from "@angular/material";
 import {FormsModule} from "@angular/forms";
@@ -24,6 +24,7 @@ import { OverviewComponent } from './dashboard/overview/overview.component';
 import {CoursesComponent, SearchCoursesFilter} from './dashboard/courses/courses.component';
 import { MoodleCoursesComponent } from './dashboard/overview/moodle-courses/moodle-courses.component';
 import {ScrollingModule} from "@angular/cdk/scrolling";
+import { BasicStatsComponent } from './dashboard/overview/basic-stats/basic-stats.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {ScrollingModule} from "@angular/cdk/scrolling";
     CoursesComponent,
     MoodleCoursesComponent,
     SearchCoursesFilter,
+    BasicStatsComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,7 @@ import {ScrollingModule} from "@angular/cdk/scrolling";
     MatToolbarModule,
     MatButtonModule,
     MatInputModule,
+    MatSliderModule,
     MatProgressBarModule,
     MatCardModule,
     MatExpansionModule,

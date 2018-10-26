@@ -49,6 +49,30 @@ export class DataService {
     return activeCourses;
   }
 
+  public get allProgress(): any {
+    console.log('Get all progress');
+    const semesters = this._raw.transcriptOfRecords.tor;
+    let passedModules = 0;
+    let openModules = 0;
+    let ticks = 0;
+    for (const semester of semesters) {
+      if (semester.name.includes('Semester')) {
+        ticks++;
+        for (const module of semester.modules) {
+          for (const course of module.courses) {
+            course.status === 'B' ? passedModules++ : openModules++;
+          }
+        }
+      }
+    }
+    return {
+      passed: passedModules,
+      open: openModules,
+      all: passedModules + openModules,
+      ticks: ticks,
+    };
+  }
+
   public fetchRawInfo() {
     this.http.get('/care/tor').subscribe(
       (res: any) => {
