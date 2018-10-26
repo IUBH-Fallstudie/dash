@@ -1,20 +1,71 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AuthService} from "../auth.service";
 import {DataService} from "../data.service";
+import {MatTabGroup} from "@angular/material";
+import {animate, state, style, transition, trigger} from "@angular/animations";
+import {Meta} from "@angular/platform-browser";
 
 @Component({
   selector: 'dash-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  animations: [
+    trigger('fabShowHide', [
+      state('show', style({
+        transform: 'scale(1)',
+      })),
+      state('hide', style({
+        transform: 'scale(0)',
+      })),
+      transition('show => hide', [
+        animate('0.2s'),
+      ]),
+      transition('hide => show', [
+        animate('0.2s'),
+      ])
+    ]),
+    trigger('searchOpenClose', [
+      state('open', style({
+        transform: 'scale(1)',
+      })),
+      state('close', style({
+        transform: 'scale(0)',
+      })),
+      transition('open => close', [
+        animate('0.2s'),
+      ]),
+      transition('close => open', [
+        animate('0.2s'),
+      ])
+    ]),
+  ]
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private dataService: DataService) {
+  // Index of Tab that is being activated
+  public currentIndex = 0;
+  // Index of Tab after animation
+  public activeIndex = 0;
+
+  public searchOpen = false;
+
+  constructor(private dataService: DataService, private meta: Meta) {
   }
 
   ngOnInit() {
     this.dataService.fetchRawInfo();
   }
+
+  openSearch() {
+    this.searchOpen = true;
+    this.meta.updateTag({name: 'theme-color', content: '#e68c74'});
+  }
+
+  closeSearch() {
+    this.searchOpen = false;
+    this.meta.updateTag({name: 'theme-color', content: '#113a47'});
+  }
+
 
 }

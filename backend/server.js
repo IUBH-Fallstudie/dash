@@ -7,11 +7,19 @@ const path = require('path');
 const care = require('./service/care-service');
 const mycampus = require('./service/mycampus-service');
 
-const careUrl = 'https://care-fs.iubh.de/';
 
 app.use(bodyParser.json());
 
+// Care Proxy
 app.use('/en', proxy('/en',
+  {
+    target: 'https://care-fs.iubh.de/',
+    changeOrigin: true,
+  }
+));
+
+// myCampus Proxy
+app.use('/login', proxy('/login',
   {
     target: 'https://care-fs.iubh.de/',
     changeOrigin: true,

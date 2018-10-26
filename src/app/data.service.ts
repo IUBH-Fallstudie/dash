@@ -92,6 +92,23 @@ export class DataService {
       .subscribe(
         // Moodle kümmert sich um die Erfolgreiche Authentifizierung. Deshalb findet hier kein Error-Handling statt.
       );
+
+    // Setze zusätzlich zum Moodle auth den Moodle Session Cookie, damit Bilder laden (funktioniert nur mit https)
+    this.http.post('https://mycampus.iubh.de/login/index.php', `anchor=&username=${user}=${password}&rememberusername=1`,
+      {
+        headers: new HttpHeaders(
+          {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Upgrade-Insecure-Requests': '1',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+          }
+        )
+      })
+      .subscribe(
+        // Moodle kümmert sich um die Erfolgreiche Authentifizierung. Deshalb findet hier kein Error-Handling statt.
+      );
+
+
   }
 
   private saveLocal() {

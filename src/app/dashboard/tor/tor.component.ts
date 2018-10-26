@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {Component, OnInit} from '@angular/core';
 import {MatBottomSheet} from "@angular/material";
 import {ModuleDetailComponent} from "./module-detail/module-detail.component";
 import {DataService} from "../../data.service";
@@ -7,14 +6,15 @@ import {DataService} from "../../data.service";
 @Component({
   selector: 'dash-tor',
   templateUrl: './tor.component.html',
-  styleUrls: ['./tor.component.scss']
+  styleUrls: ['./tor.component.scss'],
 })
 export class TorComponent implements OnInit {
-
   constructor(private bottomSheet: MatBottomSheet, public dataService: DataService) {
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
 
   calcSemesterProgress(semester: any) {
     let passedModules = 0;

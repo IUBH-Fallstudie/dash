@@ -1,13 +1,22 @@
-<div class="search-input">
-  <mat-form-field>
-    <input matInput placeholder="Suche" [(ngModel)]="term">
-  </mat-form-field>
-</div>
+<div class="courses">
+  <mat-toolbar color="accent">
+    <button mat-icon-button (click)="onClose()"><mat-icon>arrow_back</mat-icon></button>
+    <div class="search-input">
+      <mat-form-field appearance="standard" color="primary">
+        <input matInput placeholder="Suche" [(ngModel)]="term" #searchInput="matInput">
+        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="term=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </mat-toolbar>
 
-<mat-list>
-  <mat-list-item *ngFor="let course of dataService.allCourses" [hidden]="!course.id.toLowerCase().includes(term.toLowerCase()) && !course.name.toLowerCase().includes(term.toLowerCase())">
-    <h4 mat-line>{{course.id}}</h4>
-    <p mat-line> {{course.name}} </p>
-    <mat-divider></mat-divider>
-  </mat-list-item>
-</mat-list>
+  <mat-list>
+    <mat-list-item *ngFor="let course of dataService.allCourses"
+                   [hidden]="!course.id.toLowerCase().includes(term.toLowerCase()) && !course.name.toLowerCase().includes(term.toLowerCase())">
+      <h4 mat-line>{{course.id}}</h4>
+      <p mat-line> {{course.name}} </p>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+</div>
