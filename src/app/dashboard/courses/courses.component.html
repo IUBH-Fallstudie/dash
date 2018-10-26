@@ -1,6 +1,6 @@
-<div class="courses">
+<div class="courses" [@fadeInOut]="closed ? 'close' : 'open'" (@fadeInOut.done)="onAnimationEvent($event)">
   <mat-toolbar color="accent">
-    <button mat-icon-button (click)="onClose()"><mat-icon>arrow_back</mat-icon></button>
+    <button mat-icon-button (click)="closed = true;"><mat-icon>arrow_back</mat-icon></button>
     <div class="search-input">
       <mat-form-field appearance="standard" color="primary">
         <input matInput placeholder="Suche" [(ngModel)]="term" #searchInput="matInput">

@@ -24,21 +24,7 @@ import {Meta} from "@angular/platform-browser";
       transition('hide => show', [
         animate('0.2s'),
       ])
-    ]),
-    trigger('searchOpenClose', [
-      state('open', style({
-        transform: 'scale(1)',
-      })),
-      state('close', style({
-        transform: 'scale(0)',
-      })),
-      transition('open => close', [
-        animate('0.2s'),
-      ]),
-      transition('close => open', [
-        animate('0.2s'),
-      ])
-    ]),
+    ])
   ]
 })
 export class DashboardComponent implements OnInit {
