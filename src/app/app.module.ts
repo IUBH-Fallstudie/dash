@@ -11,9 +11,18 @@ import {ToolbarComponent} from './shared/toolbar/toolbar.component';
 import {
   MatBottomSheetModule,
   MatButtonModule,
-  MatCardModule, MatExpansionModule, MatIconModule,
-  MatInputModule, MatListModule,
-  MatProgressBarModule, MatRippleModule, MatSliderModule, MatSnackBarModule, MatTableModule, MatTabsModule,
+  MatCardModule,
+  MatExpansionModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRippleModule,
+  MatSliderModule,
+  MatSnackBarModule,
+  MatTableModule,
+  MatTabsModule,
   MatToolbarModule
 } from "@angular/material";
 import {FormsModule} from "@angular/forms";
@@ -65,6 +74,7 @@ registerLocaleData(localeDe, 'de');
     MatCardModule,
     MatExpansionModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
     MatListModule,
     MatTableModule,
     MatIconModule,

@@ -25,5 +25,7 @@
 </div>
 
 <div class="loading" *ngIf="!contentLoaded">
-  Loading
+  <mat-progress-spinner [color]="'accent'" [mode]="'indeterminate'"></mat-progress-spinner>
+  <h3>Ladevorgang</h3>
+  <span matLine>Das kann ein paar Sekunden dauern.</span>
 </div>
