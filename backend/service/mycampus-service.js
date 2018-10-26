@@ -27,6 +27,10 @@ async function getCourseOverview(client, userId) {
     args: {'userid': userId}
   });
 
+  const calendarEvents = await client.call({
+    wsfunction: 'core_calendar_get_calendar_upcoming_view'
+  });
+
   const courseIds = basicInfoCourses.map((course) => {
     return course.id;
   }).join(',');
@@ -37,10 +41,10 @@ async function getCourseOverview(client, userId) {
     args: {'field': 'ids', 'value': courseIds}
   })).courses;
 
-  return mergeCourseInfos(basicInfoCourses, detailedInfoCourses);
+  return mergeCourseInfos(basicInfoCourses, detailedInfoCourses, calendarEvents);
 }
 
-function mergeCourseInfos(basicInfoCourses, detailedInfoCourses) {
+function mergeCourseInfos(basicInfoCourses, detailedInfoCourses, calendarEvents) {
   const courses = [];
   for (const detailedInfoCourse of detailedInfoCourses) {
     // Einführungskurse filtern (category 3)
@@ -52,7 +56,16 @@ function mergeCourseInfos(basicInfoCourses, detailedInfoCourses) {
         shortname: detailedInfoCourse.shortname,
         // Frag mich nicht, warum die API da ein 'webservice/' hat, was zu einem Error führt. Es ist eben so.
         image: detailedInfoCourse.overviewfiles[0].fileurl.replace('webservice/', ''),
+        events: [],
       };
+
+      for (const event of calendarEvents.events) {
+        const eventCourseId = event.url.split('?id=')[event.url.split('?id=').length - 1];
+        if (eventCourseId === courseInfo.id.toString()) {
+          delete event.course;
+          courseInfo.events.push(event);
+        }
+      }
 
       for (const basicInfoCourse of basicInfoCourses) {
         if (detailedInfoCourse.id === basicInfoCourse.id) {

@@ -6,7 +6,7 @@
     <div class="search-input">
       <mat-form-field appearance="standard" color="primary">
         <input matInput placeholder="Suche" [(ngModel)]="term" #searchInput="matInput">
-        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="term=''">
+        <button mat-button *ngIf="term !== ''" matSuffix mat-icon-button aria-label="Clear" (click)="term = ''">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
@@ -22,5 +22,4 @@
       </mat-list-item>
       </cdk-virtual-scroll-viewport>
     </mat-list>
-
 </div>

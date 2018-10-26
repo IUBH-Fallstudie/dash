@@ -49,8 +49,19 @@ export class DataService {
     return activeCourses;
   }
 
+  public get upcomingActiveCourseEvents(): any[] {
+    const activeCourses = this.activeMoodleCourses;
+    let events = [];
+    for (const course of activeCourses) {
+      events = events.concat(course.events);
+    }
+    events.sort((a, b) => {
+      return b.timesort - a.timesort;
+    });
+    return events;
+  }
+
   public get allProgress(): any {
-    console.log('Get all progress');
     const semesters = this._raw.transcriptOfRecords.tor;
     let passedModules = 0;
     let openModules = 0;

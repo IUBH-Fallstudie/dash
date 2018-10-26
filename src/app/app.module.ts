@@ -1,13 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {LOCALE_ID, NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DashboardComponent} from './dashboard/dashboard.component';
 import {HttpClientModule} from "@angular/common/http";
-import { LoginComponent } from './login/login.component';
-import { ToolbarComponent } from './shared/toolbar/toolbar.component';
+import {LoginComponent} from './login/login.component';
+import {ToolbarComponent} from './shared/toolbar/toolbar.component';
 import {
   MatBottomSheetModule,
   MatButtonModule,
@@ -17,15 +17,21 @@ import {
   MatToolbarModule
 } from "@angular/material";
 import {FormsModule} from "@angular/forms";
-import { SemesterTableComponent } from './dashboard/tor/semester-table/semester-table.component';
-import { TorComponent } from './dashboard/tor/tor.component';
-import { ModuleDetailComponent } from './dashboard/tor/module-detail/module-detail.component';
-import { OverviewComponent } from './dashboard/overview/overview.component';
+import {SemesterTableComponent} from './dashboard/tor/semester-table/semester-table.component';
+import {TorComponent} from './dashboard/tor/tor.component';
+import {ModuleDetailComponent} from './dashboard/tor/module-detail/module-detail.component';
+import {OverviewComponent} from './dashboard/overview/overview.component';
 import {CoursesComponent, SearchCoursesFilter} from './dashboard/courses/courses.component';
-import { MoodleCoursesComponent } from './dashboard/overview/moodle-courses/moodle-courses.component';
+import {MoodleCoursesComponent} from './dashboard/overview/moodle-courses/moodle-courses.component';
 import {ScrollingModule} from "@angular/cdk/scrolling";
-import { BasicStatsComponent } from './dashboard/overview/basic-stats/basic-stats.component';
-import { LinksComponent } from './dashboard/links/links.component';
+import {BasicStatsComponent} from './dashboard/overview/basic-stats/basic-stats.component';
+import {LinksComponent} from './dashboard/links/links.component';
+import {CalendarComponent} from './dashboard/overview/calendar/calendar.component';
+
+import localeDe from '@angular/common/locales/de';
+import {registerLocaleData} from "@angular/common";
+registerLocaleData(localeDe, 'de');
+
 
 @NgModule({
   declarations: [
@@ -42,6 +48,7 @@ import { LinksComponent } from './dashboard/links/links.component';
     SearchCoursesFilter,
     BasicStatsComponent,
     LinksComponent,
+    CalendarComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,8 +71,9 @@ import { LinksComponent } from './dashboard/links/links.component';
     MatBottomSheetModule,
     MatTabsModule,
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue: 'de'}],
   bootstrap: [AppComponent],
   entryComponents: [ModuleDetailComponent],
 })
-export class AppModule { }
+export class AppModule {
+}

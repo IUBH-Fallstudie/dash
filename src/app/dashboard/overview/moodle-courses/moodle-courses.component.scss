@@ -1,9 +1,19 @@
-.cards {
+.courses {
+  display: flex;
+  overflow-x: auto;
+  .course {
+    margin-right: 24px;
+  }
 }
+
 mat-card {
   margin-bottom: 16px;
   min-width: 340px;
   max-width: 450px;
+}
+
+mat-card-subtitle {
+  white-space: nowrap;
 }
 
 a {
