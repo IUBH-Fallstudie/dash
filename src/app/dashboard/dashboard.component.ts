@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {DataService} from "../data.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {Meta} from "@angular/platform-browser";
+import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'dash-dashboard',
@@ -33,11 +35,20 @@ export class DashboardComponent implements OnInit {
 
   public searchOpen = false;
 
-  constructor(private dataService: DataService, private meta: Meta) {
+  constructor(private dataService: DataService, private meta: Meta, private router: Router, private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
     this.dataService.fetchRawInfo();
+
+    this.dataService.authenticate(this.dataService._raw.userCredentials['user'], this.dataService._raw.userCredentials['pass'], success => {
+      if (!success) {
+        this.router.navigate(['auth']);
+        this.snackBar.open('Dein Passwort scheint sich geändert zu haben. Bitte logge dich erneut ein.', 'Okay', {
+          duration: 5500,
+        });
+      }
+    });
   }
 
   openSearch() {
@@ -52,5 +63,8 @@ export class DashboardComponent implements OnInit {
     this.meta.updateTag({name: 'theme-color', content: '#113a47'});
   }
 
+  public get contentLoaded() {
+    return (this.dataService.moodleCourses.length > 0 && this.dataService.transcriptOfRecords.tor.length !== null);
+  }
 
 }

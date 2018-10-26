@@ -1,6 +1,9 @@
 .courses {
   display: flex;
   overflow-x: auto;
+  padding-left: 16px;
+  margin-left: -16px;
+  margin-right: -16px;
   .course {
     margin-right: 24px;
   }

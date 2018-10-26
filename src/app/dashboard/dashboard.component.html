@@ -1,23 +1,29 @@
-<mat-tab-group backgroundColor="primary" [dynamicHeight]="true" (selectedIndexChange)="currentIndex = $event"
-               (animationDone)="activeIndex = currentIndex">
-  <mat-tab label="Dashboard">
-    <dash-overview></dash-overview>
-  </mat-tab>
-  <mat-tab label="Kurse">
-    <dash-tor></dash-tor>
-  </mat-tab>
-  <mat-tab label="Schnellzugriff">
-    <dash-links></dash-links>
-  </mat-tab>
-</mat-tab-group>
+<div class="loaded-content" *ngIf="contentLoaded">
+  <mat-tab-group backgroundColor="primary" [dynamicHeight]="true" (selectedIndexChange)="currentIndex = $event"
+                 (animationDone)="activeIndex = currentIndex">
+    <mat-tab label="Dashboard">
+      <dash-overview></dash-overview>
+    </mat-tab>
+    <mat-tab label="Kurse">
+      <dash-tor></dash-tor>
+    </mat-tab>
+    <mat-tab label="Schnellzugriff">
+      <dash-links></dash-links>
+    </mat-tab>
+  </mat-tab-group>
 
-<div class="search-fab-wrapper">
-  <button [@fabShowHide]="activeIndex === 1 && currentIndex === activeIndex ? 'show' : 'hide'"
-          (click)="openSearch()" class="search-fab" mat-fab color="accent">
-    <mat-icon>search</mat-icon>
-  </button>
+  <div class="search-fab-wrapper">
+    <button [@fabShowHide]="activeIndex === 1 && currentIndex === activeIndex ? 'show' : 'hide'"
+            (click)="openSearch()" class="search-fab" mat-fab color="accent">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+
+  <div class="course-search" *ngIf="searchOpen">
+    <dash-courses (close)="closeSearch()"></dash-courses>
+  </div>
 </div>
 
-<div class="course-search" *ngIf="searchOpen">
-  <dash-courses (close)="closeSearch()"></dash-courses>
+<div class="loading" *ngIf="!contentLoaded">
+  Loading
 </div>
