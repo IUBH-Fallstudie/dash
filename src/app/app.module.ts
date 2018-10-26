@@ -13,7 +13,7 @@ import {
   MatButtonModule,
   MatCardModule, MatExpansionModule, MatIconModule,
   MatInputModule, MatListModule,
-  MatProgressBarModule, MatRippleModule, MatSliderModule, MatTableModule, MatTabsModule,
+  MatProgressBarModule, MatRippleModule, MatSliderModule, MatSnackBarModule, MatTableModule, MatTabsModule,
   MatToolbarModule
 } from "@angular/material";
 import {FormsModule} from "@angular/forms";
@@ -64,6 +64,7 @@ registerLocaleData(localeDe, 'de');
     MatProgressBarModule,
     MatCardModule,
     MatExpansionModule,
+    MatSnackBarModule,
     MatListModule,
     MatTableModule,
     MatIconModule,

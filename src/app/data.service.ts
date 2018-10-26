@@ -84,6 +84,10 @@ export class DataService {
     };
   }
 
+  public get isLoggedIn() {
+    return this._raw.userCredentials && this._raw.userCredentials['user'];
+  }
+
   public fetchRawInfo() {
     this.http.get('/care/tor').subscribe(
       (res: any) => {

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {AuthService} from "../auth.service";
 import {DataService} from "../data.service";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'dash-login',
@@ -11,12 +10,11 @@ import {DataService} from "../data.service";
 })
 export class LoginComponent implements OnInit {
 
-  public user: string;
-  public pass: string;
+  public user: string = '';
+  public pass: string = '';
 
-  public error: boolean = false;
 
-  constructor(private http: HttpClient, private router: Router, private dataService: DataService) { }
+  constructor(private router: Router, private dataService: DataService, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -26,7 +24,10 @@ export class LoginComponent implements OnInit {
       if (success) {
         this.router.navigate(['']);
       } else {
-        this.error = true;
+        this.pass = '';
+        this.snackBar.open('Nutzername und Passwort stimmen nicht überein. Bitte versuche es erneut.', 'Okay', {
+          duration: 5500,
+        });
       }
     });
   }

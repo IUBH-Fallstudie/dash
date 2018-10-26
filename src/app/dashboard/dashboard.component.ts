@@ -1,8 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {AuthService} from "../auth.service";
+import {Component, OnInit} from '@angular/core';
 import {DataService} from "../data.service";
-import {MatTabGroup} from "@angular/material";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {Meta} from "@angular/platform-browser";
 
