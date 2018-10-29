@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LinkService} from './linkService';
 
 @Component({
   selector: 'dash-links',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LinksComponent implements OnInit {
 
-  constructor() { }
+  constructor(public linkList: LinkService) { }
 
   ngOnInit() {
   }

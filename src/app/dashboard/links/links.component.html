@@ -1,3 +1,27 @@
 <div class="links">
-  Hier kommen die Links rein
+  <a class="artikel" *ngFor="let links of linkList.links">
+    <img src="{{links.linkBild}}" />
+
+    {{links.linkName}}
+  </a>
+
+  <mat-list>
+    <h3 mat-subheader>Studienplattformen</h3>
+    <mat-list-item *ngFor="let mainLinks of linkList.mainLinks">
+      <a mat-list-item href="{{mainLinks.linkURL}}">
+        <mat-icon mat-list-icon>{{mainLinks.linkBild}}</mat-icon>
+        <h4 mat-line>{{mainLinks.linkName}}</h4>
+        <p mat-line> {{mainLinks.linkBeschreibung}} </p>
+      </a>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <h3 mat-subheader>Wichtige Funktionen</h3>
+    <mat-list-item *ngFor="let functionLinks of linkList.functionLinks">
+      <a mat-list-item href="{{functionLinks.linkURL}}">
+        <mat-icon mat-list-icon>{{functionLinks.linkBild}}</mat-icon>
+        <h4 mat-line>{{functionLinks.linkName}}</h4>
+        <p mat-line> {{functionLinks.linkBeschreibung}} </p>
+      </a>
+    </mat-list-item>
+  </mat-list>
 </div>
