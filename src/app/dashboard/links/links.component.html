@@ -1,11 +1,5 @@
 <div class="links">
-  <a class="artikel" *ngFor="let links of linkList.links">
-    <img src="{{links.linkBild}}" />
-
-    {{links.linkName}}
-  </a>
-
-  <mat-list>
+  <mat-nav-list>
     <h3 mat-subheader>Studienplattformen</h3>
     <mat-list-item *ngFor="let mainLinks of linkList.mainLinks">
       <a mat-list-item href="{{mainLinks.linkURL}}">
@@ -23,5 +17,5 @@
         <p mat-line> {{functionLinks.linkBeschreibung}} </p>
       </a>
     </mat-list-item>
-  </mat-list>
+  </mat-nav-list>
 </div>
