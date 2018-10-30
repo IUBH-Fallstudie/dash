@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {LinkService} from './linkService';
+import {LinksService} from './links.service';
 
 @Component({
   selector: 'dash-links',
@@ -8,7 +8,7 @@ import {LinkService} from './linkService';
 })
 export class LinksComponent implements OnInit {
 
-  constructor(public linkList: LinkService) { }
+  constructor(public linkList: LinksService) { }
 
   ngOnInit() {
   }

@@ -4,7 +4,7 @@ import {Links} from './links';
 @Injectable({
   providedIn: 'root'
 })
-export class LinkService {
+export class LinksService {
 
   public mainLinks: Links[];
   public functionLinks: Links[];

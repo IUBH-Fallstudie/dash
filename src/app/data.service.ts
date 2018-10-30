@@ -133,7 +133,7 @@ export class DataService {
       );
 
     // Setze zusätzlich zum Moodle auth den Moodle Session Cookie, damit Bilder laden (funktioniert nur mit https)
-    this.http.post('https://mycampus.iubh.de/login/index.php', `anchor=&username=${user}=${password}&rememberusername=1`,
+    this.http.post('/login/index.php', `anchor=&username=${user}&password=${password}&rememberusername=1`,
       {
         headers: new HttpHeaders(
           {

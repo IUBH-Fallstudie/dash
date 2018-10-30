@@ -15,14 +15,20 @@ app.use('/en', proxy('/en',
   {
     target: 'https://care-fs.iubh.de/',
     changeOrigin: true,
+    autoRewrite: true,
+    cookieDomainRewrite: "https://care-fs.iubh.de",
+    preserveHeaderKeyCase: true
   }
 ));
 
 // myCampus Proxy
-app.use('/login', proxy('/login',
+app.use('/login/index.php', proxy('/login/index.php',
   {
-    target: 'https://care-fs.iubh.de/',
+    target: 'https://mycampus.iubh.de',
     changeOrigin: true,
+    autoRewrite: true,
+    logLevel: 'debug',
+    preserveHeaderKeyCase: true
   }
 ));
 
