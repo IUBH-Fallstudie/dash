@@ -50,6 +50,15 @@ class MoodleUser {
   }
 
   /**
+   * Returns the caches user course grades
+   * @returns {Array<Object>} - The users caches course grades.
+   */
+
+  get courseGrades() {
+    return this.courseGrades;
+  }
+
+  /**
    * Returns the cached user modules
    * @return {Array<Object>} - The users cached modules.
    */

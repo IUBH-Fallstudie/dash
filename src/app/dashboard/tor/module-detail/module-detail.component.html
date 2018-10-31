@@ -1,11 +1,15 @@
 <div class="module-detail">
   <h3 mat-line>{{module.id}}</h3>
-  <mat-list>
+  <mat-nav-list>
     <h3 mat-subheader>Kurse</h3>
     <mat-list-item *ngFor="let course of module.courses">
-      <mat-icon matListIcon (click)="openModule(course.name)">class</mat-icon>
-      <h4 mat-line>{{course.id}}</h4>
-      <p mat-line>{{course.name}}</p>
+      <a mat-list-item href="{{'https://www.iubh-fernstudium.de/kurs/'+course.name}}" target="_blank">
+        <mat-icon matListIcon (click)="courseLink(course.name)">class</mat-icon>
+        <h4 mat-line>{{course.id}}</h4>
+        <p mat-line>{{course.name}}</p>
+      </a>
+      <span class="passed" *ngIf="getStatus(module) === 'B'"><span class="badge">{{course.courseGrades}}
+        <mat-icon>grade</mat-icon></span></span>
     </mat-list-item>
-  </mat-list>
+  </mat-nav-list>
 </div>
