@@ -1,6 +1,4 @@
 const moodle = require('moodle-client');
-const MoodleUser = require('./moodle-scraper-service').MoodleUser;
-const moment = require('moment');
 
 
 module.exports = {
