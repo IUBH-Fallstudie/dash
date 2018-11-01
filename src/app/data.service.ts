@@ -21,6 +21,10 @@ export class DataService {
     return this._raw.transcriptOfRecords;
   }
 
+  public get userInfo() {
+    return this._raw.userInfo;
+  }
+
   public get allCourses(): any[] {
     const courses = [];
     for (let semester of this._raw.transcriptOfRecords.tor) {
@@ -108,6 +112,7 @@ export class DataService {
     this.http.post('/moodle/auth', {user: user, pass: password})
       .subscribe(
         res => {
+          console.log(res);
           this._raw.userInfo = res;
           this._raw.userCredentials = {user: user, pass: password};
           callback(true);

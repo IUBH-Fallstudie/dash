@@ -54,8 +54,7 @@ function mergeCourseInfos(basicInfoCourses, detailedInfoCourses, calendarEvents)
         url: 'https://mycampus.iubh.de/course/view.php?id=' + detailedInfoCourse.id,
         name: detailedInfoCourse.displayname,
         shortname: detailedInfoCourse.shortname,
-        // Frag mich nicht, warum die API da ein 'webservice/' hat, was zu einem Error führt. Es ist eben so.
-        image: detailedInfoCourse.overviewfiles[0].fileurl.replace('webservice/', ''),
+        image: detailedInfoCourse.overviewfiles[0].fileurl,
         events: [],
       };
 

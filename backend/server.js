@@ -38,7 +38,7 @@ app.post('/moodle/auth', (req, res) => {
       if (authentication === false) {
         res.status(403).send(false);
       } else {
-        res.send(authentication.clientInfo);
+        res.status(200).json(authentication);
       }
     }
   )

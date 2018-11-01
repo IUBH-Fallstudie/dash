@@ -7,7 +7,7 @@
           <mat-card-title>{{course.shortname}}</mat-card-title>
           <mat-card-subtitle>{{course.name}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image [src]="course.image">
+        <img mat-card-image [src]="course.image + '?token=' + dataService.userInfo?.moodleToken">
         <mat-card-content>
           <mat-progress-bar mode="determinate" [value]="course.progress" color="accent"></mat-progress-bar>
         </mat-card-content>
