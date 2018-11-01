@@ -39,8 +39,9 @@ import {CalendarComponent} from './dashboard/overview/calendar/calendar.componen
 
 import localeDe from '@angular/common/locales/de';
 import {registerLocaleData} from "@angular/common";
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
+
 registerLocaleData(localeDe, 'de');
 
 
@@ -83,7 +84,7 @@ registerLocaleData(localeDe, 'de');
     MatRippleModule,
     MatBottomSheetModule,
     MatTabsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
   ],
   providers: [{provide: LOCALE_ID, useValue: 'de'}],
   bootstrap: [AppComponent],
