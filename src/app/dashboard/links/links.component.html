@@ -1,20 +1,20 @@
 <div class="links">
   <mat-nav-list>
     <h3 mat-subheader>Studienplattformen</h3>
-    <mat-list-item *ngFor="let mainLinks of linkList.mainLinks">
-      <a mat-list-item href="{{mainLinks.linkURL}}" target="_blank">
-        <mat-icon mat-list-icon>{{mainLinks.linkBild}}</mat-icon>
-        <h4 mat-line>{{mainLinks.linkName}}</h4>
-        <p mat-line> {{mainLinks.linkBeschreibung}} </p>
+    <mat-list-item *ngFor="let mainLinks of link.mainLinks">
+      <a mat-list-item href="{{mainLinks.url}}" target="_blank">
+        <mat-icon mat-list-icon>{{mainLinks.picture}}</mat-icon>
+        <h4 mat-line>{{mainLinks.titel}}</h4>
+        <p mat-line> {{mainLinks.description}} </p>
       </a>
     </mat-list-item>
     <mat-divider></mat-divider>
     <h3 mat-subheader>Wichtige Funktionen</h3>
-    <mat-list-item *ngFor="let functionLinks of linkList.functionLinks">
-      <a mat-list-item href="{{functionLinks.linkURL}}" target="_blank">
-        <mat-icon mat-list-icon>{{functionLinks.linkBild}}</mat-icon>
-        <h4 mat-line>{{functionLinks.linkName}}</h4>
-        <p mat-line> {{functionLinks.linkBeschreibung}} </p>
+    <mat-list-item *ngFor="let functionLinks of link.functionLinks">
+      <a mat-list-item href="{{functionLinks.url}}" target="_blank">
+        <mat-icon mat-list-icon>{{functionLinks.picture}}</mat-icon>
+        <h4 mat-line>{{functionLinks.titel}}</h4>
+        <p mat-line> {{functionLinks.description}} </p>
       </a>
     </mat-list-item>
   </mat-nav-list>
