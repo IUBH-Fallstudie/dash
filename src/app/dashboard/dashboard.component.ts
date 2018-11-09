@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
 
   closeSearch() {
     this.searchOpen = false;
-    this.meta.updateTag({name: 'theme-color', content: '#113a47'});
+    this.meta.updateTag({name: 'theme-color', content: '#103440'});
   }
 
   public get contentLoaded() {
