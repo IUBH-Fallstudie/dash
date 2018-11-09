@@ -63,3 +63,13 @@ app.get('*', function (req, res) {
 
 const port = process.env.PORT || 8090;
 app.listen(port, () => console.log(`Server listening on port ${port}!`));
+
+//Modulhandbücher
+app.use('/kurs', proxy('/kurs',
+  {
+    target: 'https://iubh-fernstudium.de/',
+    changeOrigin: true,
+    autoRewrite: true,
+    preserveHeaderKeyCase: true
+  }
+));

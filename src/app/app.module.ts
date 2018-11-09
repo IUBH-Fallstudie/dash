@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {LOCALE_ID, NgModule} from '@angular/core';
+import {ErrorHandler, LOCALE_ID, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -41,6 +41,7 @@ import localeDe from '@angular/common/locales/de';
 import {registerLocaleData} from "@angular/common";
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
+import { DetailServiceComponent } from './dashboard/tor/module-detail/detail-service/detail-service.component';
 
 registerLocaleData(localeDe, 'de');
 
@@ -61,6 +62,7 @@ registerLocaleData(localeDe, 'de');
     BasicStatsComponent,
     LinksComponent,
     CalendarComponent,
+    DetailServiceComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +88,9 @@ registerLocaleData(localeDe, 'de');
     MatTabsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'de'}],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'de'},
+  ],
   bootstrap: [AppComponent],
   entryComponents: [ModuleDetailComponent],
 })

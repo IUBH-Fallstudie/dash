@@ -6,3 +6,10 @@ h3 {
   padding-bottom: 0;
   margin-bottom: 0;
 }
+
+.courseGrade {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
