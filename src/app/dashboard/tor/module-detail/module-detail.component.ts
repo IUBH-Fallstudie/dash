@@ -23,7 +23,7 @@ export class ModuleDetailComponent implements OnInit {
     window.open('https://www.iubh-fernstudium.de/kurs/' + name.toLowerCase().replace(' ', '-'));
   } */
 
-  openCourseDescription (name) {
+  openCourseDescription (name, semester) {
       this.http.get('/kurs/' + name.toLowerCase().replace(' ', '_'))
         .subscribe(
         (res) => {

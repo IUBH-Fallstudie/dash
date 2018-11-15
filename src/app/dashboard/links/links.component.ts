@@ -23,6 +23,9 @@ export class LinksComponent implements OnInit {
     new Link('note', 'https://care-fs.iubh.de/de/studium//kursbuchung.php', 'Kursbuchung',
       'Buche hier direkt deine nächsten Kurse'),
   ];
+  public phoneLinks: Link[] = [
+    new Link('phone', 'tel:+4986519023453', 'Studierendensekretariat', '+49 (0)8651 90234 53'),
+    ];
 
   constructor() {
   }

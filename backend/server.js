@@ -32,6 +32,16 @@ app.use('/login/index.php', proxy('/login/index.php',
   }
 ));
 
+//Modulhandbücher
+app.use('/kurs', proxy('/kurs',
+  {
+    target: 'https://iubh-fernstudium.de/',
+    changeOrigin: true,
+    autoRewrite: true,
+    preserveHeaderKeyCase: true
+  }
+));
+
 app.post('/moodle/auth', (req, res) => {
   mycampus.authMoodle(req.body.user, req.body.pass).then(
     (authentication) => {
@@ -64,12 +74,4 @@ app.get('*', function (req, res) {
 const port = process.env.PORT || 8090;
 app.listen(port, () => console.log(`Server listening on port ${port}!`));
 
-//Modulhandbücher
-app.use('/kurs', proxy('/kurs',
-  {
-    target: 'https://iubh-fernstudium.de/',
-    changeOrigin: true,
-    autoRewrite: true,
-    preserveHeaderKeyCase: true
-  }
-));
+
