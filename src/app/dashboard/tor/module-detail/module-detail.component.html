@@ -1,14 +1,14 @@
 <div class="module-detail">
-  <h3 mat-line>{{module.id}}</h3>
+  <h3 mat-line>{{dataBottom.moduleData.id}}</h3>
   <mat-nav-list>
     <h3 mat-subheader>Kurse</h3>
-    <mat-list-item *ngFor="let course of module.courses">
-      <mat-list-item (click)="openCourseDescription(course.name)">
+    <mat-list-item *ngFor="let course of dataBottom.moduleData.courses">
+      <mat-list-item (click)="openCourseDescription(course.name, dataBottom.semesterName)">
         <mat-icon matListIcon>class</mat-icon>
         <h4 mat-line>{{course.id}}</h4>
         <p mat-line>{{course.name}}</p>
       </mat-list-item>
-      <span class="passed" *ngIf="getStatus(module) === 'B'"><span class="badge">{{course.grade}}
+      <span class="passed" *ngIf="getStatus(dataBottom.moduleData) === 'B'"><span class="badge">{{course.grade}}
         <mat-icon>grade</mat-icon></span></span>
     </mat-list-item>
   </mat-nav-list>

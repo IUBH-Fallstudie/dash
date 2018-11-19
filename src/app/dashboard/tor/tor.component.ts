@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {MatBottomSheet} from "@angular/material";
-import {ModuleDetailComponent} from "./module-detail/module-detail.component";
-import {DataService} from "../../data.service";
+import {MatBottomSheet} from '@angular/material';
+import {ModuleDetailComponent} from './module-detail/module-detail.component';
+import {DataService} from '../../data.service';
 
 @Component({
   selector: 'dash-tor',
@@ -25,10 +25,14 @@ export class TorComponent implements OnInit {
     return Math.floor(passedModules / (passedModules + openModules) * 100);
   }
 
-  openBottomSheet(moduleData): void {
+  openBottomSheet(moduleData, semesterName): void {
     console.log(moduleData);
+    console.log(semesterName);
     this.bottomSheet.open(ModuleDetailComponent, {
-      data: moduleData
+      data: {
+        moduleData: moduleData,
+        semesterName: semesterName
+      }
     });
   }
 }

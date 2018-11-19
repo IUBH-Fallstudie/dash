@@ -1,6 +1,7 @@
 import {Component, ErrorHandler, Inject, OnInit} from '@angular/core';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {DataService} from '../../../data.service';
 
 @Component({
   selector: 'dash-module-detail',
@@ -8,20 +9,15 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
   styleUrls: ['./module-detail.component.scss'],
 })
 export class ModuleDetailComponent implements OnInit {
-  private _detailUrl: String = ' ';
 
-  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public module: any, private bottomSheetRef: MatBottomSheetRef<ModuleDetailComponent>,
+  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public dataBottom: any, private bottomSheetRef: MatBottomSheetRef<ModuleDetailComponent>,
               private http: HttpClient) {
   }
 
   ngOnInit() {
-    console.log(this.module);
+    console.log(this.dataBottom.semesterName);
+    console.log(this.dataBottom.moduleData);
   }
-
-  /*
-  courseLink(name) {
-    window.open('https://www.iubh-fernstudium.de/kurs/' + name.toLowerCase().replace(' ', '-'));
-  } */
 
   openCourseDescription (name, semester) {
       this.http.get('/kurs/' + name.toLowerCase().replace(' ', '_'))
@@ -29,7 +25,9 @@ export class ModuleDetailComponent implements OnInit {
         (res) => {
           window.open('/kurs/' + name.toLowerCase().replace(' ', '-'));
           }, (err) => {
-          window.open('/kurs/');
+          window.open('https://www.iubh-fernstudium.de/modulhandbuch/bachelor-wirtschaftsinformatik/'
+            + '#semester' + semester.replace('. Semester', ''));
+          console.log('Semester', semester);
           });
   }
 
@@ -48,5 +46,8 @@ export class ModuleDetailComponent implements OnInit {
       }
     }
     return lastStatus === 'B' && hasOpenCourse ? 'A' : lastStatus;
+  }
+  // Semester des Kurses bekommen
+  getSemester(course) {
   }
 }

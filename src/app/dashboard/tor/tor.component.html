@@ -5,7 +5,7 @@
         <mat-panel-title>{{semesterData.name}}</mat-panel-title>
         <!--<mat-panel-description *ngIf="semesterData.name.includes('Semester')">{{calcSemesterProgress(semesterData.modules)}}%</mat-panel-description>-->
       </mat-expansion-panel-header>
-      <dash-semester-table [semesterData]="semesterData.modules" (moduleDetailOpen)="openBottomSheet($event)"></dash-semester-table>
+      <dash-semester-table [semesterData]="semesterData.modules" (moduleDetailOpen)="openBottomSheet($event, semesterData.name)"></dash-semester-table>
     </mat-expansion-panel>
   </mat-accordion>
 </div>
