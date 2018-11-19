@@ -25,8 +25,13 @@ export class ModuleDetailComponent implements OnInit {
         (res) => {
           window.open('/kurs/' + name.toLowerCase().replace(' ', '-'));
           }, (err) => {
-          window.open('https://www.iubh-fernstudium.de/modulhandbuch/bachelor-wirtschaftsinformatik/'
-            + '#semester' + semester.replace('. Semester', ''));
+          if(semester.toString().includes('Wahlpflichtmodule')) {
+            window.open('https://www.iubh-fernstudium.de/modulhandbuch/bachelor-wirtschaftsinformatik/'
+              + '#semester5');
+          } else {
+            window.open('https://www.iubh-fernstudium.de/modulhandbuch/bachelor-wirtschaftsinformatik/'
+              + '#semester' + semester.replace('. Semester', ''));
+          }
           console.log('Semester', semester);
           });
   }
