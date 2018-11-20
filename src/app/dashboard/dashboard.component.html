@@ -1,13 +1,28 @@
 <div class="loaded-content" *ngIf="contentLoaded">
-  <mat-tab-group backgroundColor="primary" [dynamicHeight]="true" (selectedIndexChange)="currentIndex = $event"
+  <mat-tab-group backgroundColor="primary" [dynamicHeight]="true" [(selectedIndex)]="tabIndex" (selectedIndexChange)="currentIndex = $event"
                  (animationDone)="activeIndex = currentIndex">
-    <mat-tab label="Dashboard">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <div class="label" (click)="pseudoNavigate('dashboard')">
+          Dashboard
+        </div>
+      </ng-template>
       <dash-overview></dash-overview>
     </mat-tab>
-    <mat-tab label="Kurse">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <div class="label" (click)="pseudoNavigate('kurse')">
+          Kurse
+        </div>
+      </ng-template>
       <dash-tor></dash-tor>
     </mat-tab>
-    <mat-tab label="Schnellzugriff">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <div class="label" (click)="pseudoNavigate('schnellzugriff')">
+          Schnellzugriff
+        </div>
+      </ng-template>
       <dash-links></dash-links>
     </mat-tab>
   </mat-tab-group>

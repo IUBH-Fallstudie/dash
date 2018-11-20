@@ -36,3 +36,22 @@
     opacity: 0.8;
   }
 }
+
+
+.loaded-content::ng-deep {
+  .mat-tab-label {
+    padding: 0;
+  }
+  .mat-tab-label-content {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
