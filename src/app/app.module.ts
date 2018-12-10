@@ -41,6 +41,7 @@ import localeDe from '@angular/common/locales/de';
 import {registerLocaleData} from "@angular/common";
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
+import {LoaderComponent} from './dashboard/tor/module-detail/loader/loader.component';
 
 registerLocaleData(localeDe, 'de');
 
@@ -50,6 +51,7 @@ registerLocaleData(localeDe, 'de');
     AppComponent,
     DashboardComponent,
     LoginComponent,
+    LoaderComponent,
     ToolbarComponent,
     SemesterTableComponent,
     TorComponent,
