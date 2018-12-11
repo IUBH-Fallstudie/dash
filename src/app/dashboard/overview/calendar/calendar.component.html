@@ -1,7 +1,7 @@
 <h3 class="title">Kommende Tutorien</h3>
 <mat-action-list>
   <div class="item" *ngFor="let event of dataService.upcomingActiveCourseEvents; let i = index">
-    <a [href]="event.viewurl" target="_blank" rel="noopener" mat-list-item mat-ripple [matRippleColor]="'rgba(0,0,0,0.2)'">
+    <a [dashMoodleLink]="event.viewurl" mat-list-item mat-ripple [matRippleColor]="'rgba(0,0,0,0.2)'">
       <h3 matLine>{{event.popupname}}</h3>
       <p matLine>{{event.timestart * 1000 | date:'short'}}</p>
     </a>

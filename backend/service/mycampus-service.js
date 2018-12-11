@@ -93,7 +93,7 @@ async function auth(user, pass) {
         firstName: clientInfo.firstname,
         lastName: clientInfo.lastname,
         moodleId: clientInfo.userid,
-        moodleToken: client.token,
+        moodleToken: client.token
       }
     };
   } catch (e) {

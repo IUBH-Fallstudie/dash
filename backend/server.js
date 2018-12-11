@@ -27,7 +27,6 @@ app.use('/login/index.php', proxy('/login/index.php',
     target: 'https://mycampus.iubh.de',
     changeOrigin: true,
     autoRewrite: true,
-    logLevel: 'debug',
     preserveHeaderKeyCase: true
   }
 ));

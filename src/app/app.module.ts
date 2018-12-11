@@ -11,7 +11,7 @@ import {ToolbarComponent} from './shared/toolbar/toolbar.component';
 import {
   MatBottomSheetModule,
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatDialogModule,
   MatExpansionModule,
   MatIconModule,
   MatInputModule,
@@ -24,7 +24,7 @@ import {
   MatTableModule,
   MatTabsModule,
   MatToolbarModule
-} from "@angular/material";
+} from '@angular/material';
 import {FormsModule} from "@angular/forms";
 import {SemesterTableComponent} from './dashboard/tor/semester-table/semester-table.component';
 import {TorComponent} from './dashboard/tor/tor.component';
@@ -42,6 +42,9 @@ import {registerLocaleData} from "@angular/common";
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {LoaderComponent} from './dashboard/tor/module-detail/loader/loader.component';
+import { SafeUrlPipe } from './safe-url.pipe';
+import { MoodleLinkDirective } from './moodle-link/moodle-link.directive';
+import { MoodleLinkDialogComponent } from './moodle-link/moodle-link-dialog.component';
 
 registerLocaleData(localeDe, 'de');
 
@@ -63,6 +66,9 @@ registerLocaleData(localeDe, 'de');
     BasicStatsComponent,
     LinksComponent,
     CalendarComponent,
+    SafeUrlPipe,
+    MoodleLinkDirective,
+    MoodleLinkDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +79,7 @@ registerLocaleData(localeDe, 'de');
     HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
+    MatDialogModule,
     MatInputModule,
     MatSliderModule,
     MatProgressBarModule,
@@ -92,7 +99,7 @@ registerLocaleData(localeDe, 'de');
     {provide: LOCALE_ID, useValue: 'de'},
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ModuleDetailComponent],
+  entryComponents: [ModuleDetailComponent, MoodleLinkDialogComponent],
 })
 export class AppModule {
 }

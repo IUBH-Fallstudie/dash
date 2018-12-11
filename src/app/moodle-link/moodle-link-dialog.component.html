@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Moodle-App installiert?</h1>
+<div mat-dialog-content>
+  <p>Wenn auf deinem Gerät Moodle installiert ist, kann Dash Links zu myCampus automatisch in der App öffnen.</p>
+  <p>Moodle für <a href="https://play.google.com/store/apps/details?id=com.moodle.moodlemobile" target="_blank">Android</a> und <a href="https://itunes.apple.com/de/app/moodle/id633359593" target="_blank">iOS</a></p>
+</div>
+<div mat-dialog-actions align="end">
+  <a target="_blank" [href]="data.url" (click)="onButtonClicked(false)"><button mat-button>Nein</button></a>
+  <a target="_blank" [href]="'moodle://link=' + data.url | safeUrl" (click)="onButtonClicked(true)"><button mat-button cdkFocusInitial>Ja</button></a>
+</div>

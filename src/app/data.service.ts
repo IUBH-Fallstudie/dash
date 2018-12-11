@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,8 @@ export class DataService {
     transcriptOfRecords: {tor: [], weightedOverall: 0},
     moodleCourses: [],
     userCredentials: {},
-    userInfo: {}
+    userInfo: {},
+    moodleAppInstalled: undefined
   };
 
   constructor(private http: HttpClient) {
@@ -92,6 +93,15 @@ export class DataService {
     return this._raw.userCredentials && this._raw.userCredentials['user'];
   }
 
+  public get moodleAppInstalled() {
+    return this._raw.moodleAppInstalled;
+  }
+
+  public set moodleAppInstalled(moodleAppInstalled: boolean) {
+    this._raw.moodleAppInstalled = moodleAppInstalled;
+    this.saveLocal();
+  }
+
   public fetchRawInfo() {
     this.http.get('/care/tor').subscribe(
       (res: any) => {
@@ -136,22 +146,6 @@ export class DataService {
       .subscribe(
         // Moodle kümmert sich um die Erfolgreiche Authentifizierung. Deshalb findet hier kein Error-Handling statt.
       );
-
-    // Setze zusätzlich zum Moodle auth den Moodle Session Cookie, damit Bilder laden (funktioniert nur mit https)
-    this.http.post('/login/index.php', `anchor=&username=${user}&password=${password}&rememberusername=1`,
-      {
-        headers: new HttpHeaders(
-          {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Upgrade-Insecure-Requests': '1',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-          }
-        )
-      })
-      .subscribe(
-        // Moodle kümmert sich um die Erfolgreiche Authentifizierung. Deshalb findet hier kein Error-Handling statt.
-      );
-
 
   }
 
