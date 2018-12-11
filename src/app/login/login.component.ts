@@ -13,23 +13,33 @@ export class LoginComponent implements OnInit {
   public user: string = '';
   public pass: string = '';
 
+  public loading: boolean = false;
+
 
   constructor(private router: Router, private dataService: DataService, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
 
-  public login() {
-    this.dataService.authenticate(this.user, this.pass, success => {
-      if (success) {
-        this.router.navigate(['']);
-      } else {
-        this.pass = '';
-        this.snackBar.open('Nutzername und Passwort stimmen nicht überein. Bitte versuche es erneut.', 'Okay', {
-          duration: 5500,
-        });
-      }
-    });
+  public login(): void {
+    if (this.canLogin) {
+      this.loading = true;
+      this.dataService.authenticate(this.user, this.pass, success => {
+        if (success) {
+          this.router.navigate(['']);
+        } else {
+          this.pass = '';
+          this.snackBar.open('Nutzername und Passwort stimmen nicht überein. Bitte versuche es erneut.', 'Okay', {
+            duration: 5500,
+          });
+        }
+        this.loading = false;
+      });
+    }
+  }
+
+  get canLogin(): boolean {
+    return !(this.user === '' || this.pass === '')
   }
 
 }

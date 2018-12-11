@@ -1,17 +1,21 @@
+<div class="loader" *ngIf="loading">
+  <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
+</div>
+
 <div class="login">
   <mat-card>
     <mat-card-title>Anmeldung</mat-card-title>
     <mat-card-subtitle>Bitte melde dich mit deinen IUBH-Nutzerdaten an.</mat-card-subtitle>
     <mat-card-content style="margin-bottom: 0">
       <mat-form-field>
-        <input matInput placeholder="Nutzername" [(ngModel)]="user">
+        <input matInput placeholder="Nutzername" [(ngModel)]="user" (keyup.ENTER)="login()">
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="password" placeholder="Passwort" [(ngModel)]="pass">
+        <input matInput type="password" placeholder="Passwort" [(ngModel)]="pass" (keyup.ENTER)="login()">
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions style="margin: 0">
-      <button mat-flat-button color="accent" (click)="login()" [disabled]="user === '' || pass === ''">Login</button>
+      <button mat-flat-button color="accent" (click)="login()" [disabled]="!canLogin">Login</button>
     </mat-card-actions>
   </mat-card>
 </div>

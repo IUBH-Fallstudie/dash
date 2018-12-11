@@ -1,5 +1,12 @@
 @import "../../variables";
 
+.loader {
+  position: sticky;
+  top: 0;
+  height: 0;
+  overflow: visible;
+}
+
 .login {
   width: 100%;
   height: 100%;
