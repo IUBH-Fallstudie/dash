@@ -18,12 +18,15 @@
       </a>
     </mat-list-item>
     <mat-divider></mat-divider>
-    <h3 mat-subheader>Telefonnummern</h3>
+    <h3 mat-subheader>Wichtige Kontaktinfos</h3>
     <mat-list-item *ngFor="let phoneLinks of phoneLinks">
       <a mat-list-item href="{{phoneLinks.url}}">
         <mat-icon mat-list-icon>{{phoneLinks.picture}}</mat-icon>
         <h4 mat-line>{{phoneLinks.titel}}</h4>
         <p mat-line> {{phoneLinks.description}} </p>
+      </a>
+      <a mat-list-item href="{{phoneLinks.mail}}">
+        <h4 mat-line>{{phoneLinks.mailTitel}}</h4>
       </a>
     </mat-list-item>
 
