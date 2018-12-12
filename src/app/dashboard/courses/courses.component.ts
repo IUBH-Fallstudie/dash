@@ -56,8 +56,8 @@ export class CoursesComponent implements OnInit {
     }
   }
 
-  openCourseDescription (name, semester) {
-    semester = this.searchSemesterData(name);
+  openCourseDescription (name) {
+    const semester = this.searchSemesterData(name);
     this.http.get('/kurs/' + name.toLowerCase().replace(' ', '_'))
       .subscribe(
         (res) => {
@@ -80,7 +80,7 @@ export class CoursesComponent implements OnInit {
         for (let courses of module.courses) {
           if (courses.name == name) {
             console.log(name, semester, 'hat geklappt');
-            return semester;
+            return semester.toString();
           }
         }
       }
