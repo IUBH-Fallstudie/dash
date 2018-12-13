@@ -2,6 +2,8 @@ import {Component, ErrorHandler, Inject, OnInit} from '@angular/core';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {DataService} from '../../../data.service';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'dash-module-detail',
@@ -11,7 +13,7 @@ import {DataService} from '../../../data.service';
 export class ModuleDetailComponent implements OnInit {
 
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public dataBottom: any, private bottomSheetRef: MatBottomSheetRef<ModuleDetailComponent>,
-              private http: HttpClient) {
+              private http: HttpClient, private _loadingSpinner: Ng4LoadingSpinnerService) {
   }
 
   ngOnInit() {
@@ -20,12 +22,13 @@ export class ModuleDetailComponent implements OnInit {
   }
 
   openCourseDescription (name, semester) {
+      this._loadingSpinner.show();
       this.http.get('/kurs/' + name.toLowerCase().replace(' ', '_'))
         .subscribe(
         (res) => {
           window.open('/kurs/' + name.toLowerCase().replace(' ', '-'));
           }, (err) => {
-          if(semester.toString().includes('Wahlpflichtmodule')) {
+          if (semester.toString().includes('Wahlpflichtmodule')) {
             window.open('https://www.iubh-fernstudium.de/modulhandbuch/bachelor-wirtschaftsinformatik/'
               + '#semester5');
           } else {
@@ -33,6 +36,8 @@ export class ModuleDetailComponent implements OnInit {
               + '#semester' + semester.replace('. Semester', ''));
           }
           console.log('Semester', semester);
+          }, () => {
+          this._loadingSpinner.hide();
           });
   }
 

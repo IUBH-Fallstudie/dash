@@ -3,6 +3,7 @@ import {DataService} from '../../data.service';
 import {MatInput} from '@angular/material';
 import {animate, state, style, transition, trigger, AnimationEvent} from '@angular/animations';
 import {HttpClient} from '@angular/common/http';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'dash-courses',
@@ -37,7 +38,7 @@ export class CoursesComponent implements OnInit {
   public term = '';
   public closed = false;
 
-  constructor(public dataService: DataService, private http: HttpClient) {
+  constructor(public dataService: DataService, private http: HttpClient, private _loadingSpinner: Ng4LoadingSpinnerService) {
     this.close = new EventEmitter<any>();
   }
 
@@ -57,6 +58,7 @@ export class CoursesComponent implements OnInit {
   }
 
   openCourseDescription (name) {
+    this._loadingSpinner.show();
     const semester = this.searchSemesterData(name);
     this.http.get('/kurs/' + name.toLowerCase().replace(' ', '_'))
       .subscribe(
@@ -71,6 +73,8 @@ export class CoursesComponent implements OnInit {
               + '#semester' + semester.replace('. Semester', ''));
           }
           console.log('Semester', semester);
+        }, () => {
+          this._loadingSpinner.hide();
         });
   }
   public searchSemesterData(name): any {
