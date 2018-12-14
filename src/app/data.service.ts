@@ -159,4 +159,10 @@ export class DataService {
       this._raw = JSON.parse(window.localStorage.getItem('_raw'));
     }
   }
+
+  public logout() {
+    this._raw = undefined;
+    window.localStorage.removeItem('_raw');
+    location.reload();
+  }
 }

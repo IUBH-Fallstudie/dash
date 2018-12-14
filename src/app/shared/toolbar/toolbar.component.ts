@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from '../../data.service';
+import {Platform} from '@angular/cdk/platform';
 
 @Component({
   selector: 'dash-toolbar',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dataService: DataService, public platform: Platform) { }
 
   ngOnInit() {
+  }
+
+  public showMoodleAppInstalledSetting(): boolean {
+    return this.platform.ANDROID || this.platform.IOS;
   }
 
 }

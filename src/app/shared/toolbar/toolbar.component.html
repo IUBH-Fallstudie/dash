@@ -1,5 +1,14 @@
 <div class="toolbar">
   <mat-toolbar [color]="'primary'">
     <span>Campus Dash</span>
+
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item *ngIf="showMoodleAppInstalledSetting()"><mat-slide-toggle [(ngModel)]="dataService.moodleAppInstalled">Moodle App installiert</mat-slide-toggle></button>
+      <button mat-menu-item (click)="dataService.logout()">Ausloggen</button>
+    </mat-menu>
+
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
   </mat-toolbar>
 </div>
