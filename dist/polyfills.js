@@ -3156,7 +3156,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/jonas/Projects/dash/src/polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! /Users/svea/Documents/GitHub/dash/src/polyfills.ts */"./src/polyfills.ts");
 
 
 /***/ })

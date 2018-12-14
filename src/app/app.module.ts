@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './login/login.component';
 import {ToolbarComponent} from './shared/toolbar/toolbar.component';
 import {
@@ -41,6 +41,7 @@ import localeDe from '@angular/common/locales/de';
 import {registerLocaleData} from "@angular/common";
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import {LoaderComponent} from './dashboard/tor/module-detail/loader/loader.component';
 import { SafeUrlPipe } from './safe-url.pipe';
 import { MoodleLinkDirective } from './moodle-link/moodle-link.directive';
@@ -54,7 +55,6 @@ registerLocaleData(localeDe, 'de');
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    LoaderComponent,
     ToolbarComponent,
     SemesterTableComponent,
     TorComponent,
@@ -96,6 +96,7 @@ registerLocaleData(localeDe, 'de');
     MatBottomSheetModule,
     MatTabsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'de'},
