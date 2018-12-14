@@ -2,7 +2,7 @@
   <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
 </div>
 
-<div class="login">
+<div class="login" [ngStyle]="{'background-image': 'url(/assets/illustrations/' + backgroundIllustration + '.svg)'}">
   <mat-card>
     <mat-card-title>Anmeldung</mat-card-title>
     <mat-card-subtitle>Bitte melde dich mit deinen IUBH-Nutzerdaten an.</mat-card-subtitle>

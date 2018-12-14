@@ -15,11 +15,18 @@ export class LoginComponent implements OnInit {
 
   public loading: boolean = false;
 
+  public backgroundIllustration = '';
 
-  constructor(private router: Router, private dataService: DataService, public snackBar: MatSnackBar) { }
+
+  constructor(private router: Router, private dataService: DataService, public snackBar: MatSnackBar) {
+    const illustrations = ['examen', 'finish', 'laptop', 'study'];
+    this.backgroundIllustration = illustrations[Math.floor(Math.random() * illustrations.length)]
+  }
 
   ngOnInit() {
   }
+
+
 
   public login(): void {
     if (this.canLogin) {
