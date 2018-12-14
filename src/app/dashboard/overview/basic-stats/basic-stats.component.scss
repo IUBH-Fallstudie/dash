@@ -7,14 +7,40 @@
   color: #fff;
   padding: 18px 16px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+
+  .progression-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .more-stats {
+    h4 {
+      color: #fff;
+    }
+    &::ng-deep {
+      mat-expansion-panel {
+        background-color: transparent;
+        box-shadow: none;
+      }
+      mat-expansion-panel-header {
+        background: transparent!important;
+        padding: 0;
+      }
+      .mat-content * {
+        color: #fff;
+      }
+    }
+  }
 }
 
 .weighted-average {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 94px;
+  cursor: pointer;
   .title {
     text-transform: uppercase;
     font-size: 0.9em;

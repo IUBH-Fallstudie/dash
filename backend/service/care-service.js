@@ -42,6 +42,10 @@ function getTor($) {
     let lastParentId = '';
     const sortedModules = [];
     for (let module of semester) {
+      if(module.date) {
+        module.date = parseDate(module.date);
+      }
+      module.gradeNum = parseGrade(module.grade);
       if (!module.id.split('-')[0].includes(lastParentId.split('-')[0]) || !lastParentId) {
         lastParentId = module.id;
         // remove redundant information
@@ -65,3 +69,14 @@ function getTor($) {
 
   return sortedTor;
 }
+
+function parseDate(dateStr) {
+  let parts = dateStr.match(/(\d+)/g);
+  return new Date(parts[2], parts[1]-1, parts[0]);
+}
+
+function parseGrade(gradeStr) {
+  const grade = parseFloat(gradeStr.replace(',', '.'));
+  return !isNaN(grade) ? grade : undefined;
+}
+

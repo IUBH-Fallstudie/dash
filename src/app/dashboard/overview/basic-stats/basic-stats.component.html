@@ -1,11 +1,21 @@
 <div class="basic-stats">
-  <div class="progress">
-    <h3>Fortschritt</h3>
-    <mat-slider [max]="allProgress.all" [(ngModel)]="allProgress.passed"></mat-slider>
-    <span>{{allProgress.passed}} Kurse von {{allProgress.all}} abgeschlossen</span>
+  <div class="progression-wrapper">
+    <div class="progress">
+      <h3>Fortschritt</h3>
+      <mat-slider [max]="allProgress.all" [(ngModel)]="allProgress.passed"></mat-slider>
+      <span>{{allProgress.passed}} Module von {{allProgress.all}} abgeschlossen</span>
+    </div>
+    <div class="weighted-average" mat-ripple (click)="statsExpanded = !statsExpanded">
+      <span class="value">{{dataService.transcriptOfRecords.weightedOverall | number}}</span>
+      <span class="title">Gesamtnote</span>
+    </div>
   </div>
-  <div class="weighted-average">
-    <span class="value">{{dataService.transcriptOfRecords.weightedOverall | number}}</span>
-    <span class="title">Gesamtnote</span>
+  <div class="more-stats">
+    <mat-expansion-panel [expanded]="statsExpanded">
+
+      <h4>Entwicklung Gesamtnote (ungewichtet)</h4>
+      <canvas #gradeDevelopmentChart></canvas>
+
+    </mat-expansion-panel>
   </div>
 </div>

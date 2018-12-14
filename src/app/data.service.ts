@@ -75,9 +75,7 @@ export class DataService {
       if (semester.name.includes('Semester')) {
         ticks++;
         for (const module of semester.modules) {
-          for (const course of module.courses) {
-            course.status === 'B' ? passedModules++ : openModules++;
-          }
+          module.status === 'B' ? passedModules++ : openModules++;
         }
       }
     }
