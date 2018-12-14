@@ -7,6 +7,19 @@ h3 {
   margin-bottom: 0;
 }
 
+.module-title {
+  display: flex;
+  align-items: center;
+  .module-handbook {
+    margin-right: 8px;
+    padding: 5px;
+    border-radius: 50%;
+    .handbook-link {
+      display: flex;
+    }
+  }
+}
+
 .courseGrade {
   display: flex;
   flex-direction: column;
@@ -19,4 +32,21 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.mat-list-icon {
+  cursor: pointer;
+}
+
+.passed {
+  margin-left: 8px;
+}
+
+.handbook-link {
+  color: rgba(0, 0, 0, 0.87);
+  text-decoration: none;
+}
+
+.not-found {
+  opacity: 0.5;
 }

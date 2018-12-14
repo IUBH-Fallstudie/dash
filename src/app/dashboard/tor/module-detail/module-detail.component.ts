@@ -1,9 +1,9 @@
-import {Component, ErrorHandler, Inject, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, ErrorHandler, Inject, OnInit} from '@angular/core';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {DataService} from '../../../data.service';
-import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import {Ng4LoadingSpinnerModule} from 'ng4-loading-spinner';
+import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
 
 @Component({
   selector: 'dash-module-detail',
@@ -12,33 +12,33 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 })
 export class ModuleDetailComponent implements OnInit {
 
-  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public dataBottom: any, private bottomSheetRef: MatBottomSheetRef<ModuleDetailComponent>,
-              private http: HttpClient, private _loadingSpinner: Ng4LoadingSpinnerService) {
+  public loading = false;
+
+  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any, private bottomSheetRef: MatBottomSheetRef<ModuleDetailComponent>,
+              private http: HttpClient, private cdRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
-    console.log(this.dataBottom.semesterName);
-    console.log(this.dataBottom.moduleData);
+    this.data.moduleData.handbookLoading = true;
+    this.loadHandbook(this.data.moduleData, 'modul');
+    for (const course of this.data.moduleData.courses) {
+      course.handbookLoading = true;
+      this.loadHandbook(course, 'kurs');
+    }
   }
 
-  openCourseDescription (name, semester) {
-      this._loadingSpinner.show();
-      this.http.get('/kurs/' + name.toLowerCase().replace(' ', '_'))
-        .subscribe(
+  loadHandbook(parent, type) {
+    this.http.get(this.generateHandbookLink(type, parent.name), {responseType: 'text'})
+      .subscribe(
         (res) => {
-          window.open('/kurs/' + name.toLowerCase().replace(' ', '-'));
-          }, (err) => {
-          if (semester.toString().includes('Wahlpflichtmodule')) {
-            window.open('https://www.iubh-fernstudium.de/modulhandbuch/bachelor-wirtschaftsinformatik/'
-              + '#semester5');
-          } else {
-            window.open('https://www.iubh-fernstudium.de/modulhandbuch/bachelor-wirtschaftsinformatik/'
-              + '#semester' + semester.replace('. Semester', ''));
-          }
-          console.log('Semester', semester);
-          }, () => {
-          this._loadingSpinner.hide();
-          });
+          parent.handbookLink = 'https://www.iubh-fernstudium.de' + this.generateHandbookLink(type, parent.name);
+          parent.handbookLoading = false;
+          this.cdRef.detectChanges();
+        },
+        (err) => {
+          parent.handbookLoading = false;
+          this.cdRef.detectChanges();
+        });
   }
 
   getStatus(module) {
@@ -57,7 +57,14 @@ export class ModuleDetailComponent implements OnInit {
     }
     return lastStatus === 'B' && hasOpenCourse ? 'A' : lastStatus;
   }
-  // Semester des Kurses bekommen
-  getSemester(course) {
+  
+  private generateHandbookLink(prefix: string, courseName: string): string {
+    let urlCourseName = courseName.toLowerCase().replace(new RegExp(' ', 'g'), '-');
+    urlCourseName = urlCourseName.replace(/ä/g, 'ae');
+    urlCourseName = urlCourseName.replace(/ö/g, 'oe');
+    urlCourseName = urlCourseName.replace(/ü/g, 'ue');
+    urlCourseName = urlCourseName.replace(/ß/g, 'ss');
+    return `/${prefix}/${urlCourseName}/`;
   }
 }
+

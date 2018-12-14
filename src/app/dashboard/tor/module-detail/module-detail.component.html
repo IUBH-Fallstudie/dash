@@ -1,18 +1,36 @@
 <div class="module-detail">
-  <h3 mat-line>{{dataBottom.moduleData.id}}</h3>
-  <mat-nav-list>
+  <h3 mat-line class="module-title">
+    <span class="module-handbook" matListIcon mat-ripple
+          [matRippleDisabled]="data.moduleData.handbookLoading || !data.moduleData.handbookLink">
+    <a class="handbook-link" *ngIf="!data.moduleData.handbookLoading && data.moduleData.handbookLink"
+       [href]="data.moduleData.handbookLink" target="_blank" rel="noopener"><mat-icon>class</mat-icon>
+    </a>
+    <mat-icon class="not-found"
+              *ngIf="!data.moduleData.handbookLoading && !data.moduleData.handbookLink">class</mat-icon>
+    <mat-progress-spinner *ngIf="data.moduleData.handbookLoading" [color]="'accent'" [mode]="'indeterminate'"
+                          [diameter]="24"></mat-progress-spinner>
+  </span> {{data.moduleData.name}}
+  </h3>
+  <mat-list>
     <h3 mat-subheader>Kurse</h3>
-    <mat-list-item *ngFor="let course of dataBottom.moduleData.courses"
-                   (click)="openCourseDescription(course.name, dataBottom.semesterName)">
-      <mat-icon matListIcon>class</mat-icon>
+    <mat-list-item *ngFor="let course of data.moduleData.courses">
+      <div matListIcon mat-ripple [matRippleDisabled]="course.handbookLoading || !course.handbookLink">
+        <a class="handbook-link" *ngIf="!course.handbookLoading && course.handbookLink" [href]="course.handbookLink"
+           target="_blank" rel="noopener">
+          <mat-icon>class</mat-icon>
+        </a>
+        <mat-icon class="not-found" *ngIf="!course.handbookLoading && !course.handbookLink">class</mat-icon>
+        <mat-progress-spinner *ngIf="course.handbookLoading" [color]="'accent'" [mode]="'indeterminate'"
+                              [diameter]="24"></mat-progress-spinner>
+      </div>
       <h4 mat-line>{{course.id}}</h4>
       <p mat-line>{{course.name}}</p>
-      <span class="passed" *ngIf="getStatus(dataBottom.moduleData) === 'B'">
+      <span class="passed" *ngIf="getStatus(data.moduleData) === 'B'">
         <span class="badge">
           <span>{{course.grade}}</span>
           <mat-icon>grade</mat-icon>
         </span>
       </span>
     </mat-list-item>
-  </mat-nav-list>
+  </mat-list>
 </div>

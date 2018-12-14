@@ -5,7 +5,7 @@
       <mat-slider [max]="allProgress.all" [(ngModel)]="allProgress.passed"></mat-slider>
       <span>{{allProgress.passed}} Module von {{allProgress.all}} abgeschlossen</span>
     </div>
-    <div class="weighted-average" mat-ripple (click)="statsExpanded = !statsExpanded">
+    <div class="weighted-average" mat-ripple [matRippleCentered]="true" [matRippleUnbounded]="true" [matRippleRadius]="50" (click)="statsExpanded = !statsExpanded">
       <span class="value">{{dataService.transcriptOfRecords.weightedOverall | number}}</span>
       <span class="title">Gesamtnote</span>
     </div>

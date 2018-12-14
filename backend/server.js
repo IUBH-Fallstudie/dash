@@ -36,8 +36,20 @@ app.use('/kurs', proxy('/kurs',
   {
     target: 'https://iubh-fernstudium.de/',
     changeOrigin: true,
-    autoRewrite: true,
-    preserveHeaderKeyCase: true
+    followRedirects: true,
+    autoRewrite: false,
+    hostRewrite: false,
+    secure: false,
+  }
+));
+app.use('/modul', proxy('/modul',
+  {
+    target: 'https://iubh-fernstudium.de/',
+    changeOrigin: true,
+    followRedirects: true,
+    autoRewrite: false,
+    hostRewrite: false,
+    secure: false,
   }
 ));
 
