@@ -21,16 +21,6 @@ app.use('/en', proxy('/en',
   }
 ));
 
-// myCampus Proxy
-app.use('/login/index.php', proxy('/login/index.php',
-  {
-    target: 'https://mycampus.iubh.de',
-    changeOrigin: true,
-    autoRewrite: true,
-    preserveHeaderKeyCase: true
-  }
-));
-
 //Modulhandbücher
 app.use('/kurs', proxy('/kurs',
   {
