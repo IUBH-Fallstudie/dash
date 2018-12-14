@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './login/login.component';
 import {ToolbarComponent} from './shared/toolbar/toolbar.component';
 import {
+  MatBadgeModule,
   MatBottomSheetModule,
   MatButtonModule,
   MatCardModule, MatDialogModule,
@@ -90,6 +91,7 @@ registerLocaleData(localeDe, 'de');
     MatSlideToggleModule,
     MatListModule,
     MatTableModule,
+    MatBadgeModule,
     MatIconModule,
     MatRippleModule,
     MatBottomSheetModule,

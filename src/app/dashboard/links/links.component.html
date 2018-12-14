@@ -1,37 +1,53 @@
 <div class="links">
   <mat-nav-list>
     <h3 mat-subheader>Studienplattformen</h3>
-    <a *ngFor="let mainLinks of mainLinks" mat-list-item href="{{mainLinks.url}}" target="_blank">
-      <mat-icon mat-list-icon>{{mainLinks.picture}}</mat-icon>
-      <h4 mat-line>{{mainLinks.titel}}</h4>
-      <p mat-line> {{mainLinks.description}} </p>
+    <a *ngFor="let platformLink of platformLinks" mat-list-item href="{{platformLink.url}}" target="_blank">
+      <mat-icon mat-list-icon>{{platformLink.icon}}</mat-icon>
+      <h4 mat-line>{{platformLink.title}}</h4>
+      <p mat-line> {{platformLink.description}} </p>
     </a>
+
     <mat-divider></mat-divider>
+
     <h3 mat-subheader>Wichtige Funktionen</h3>
-    <a *ngFor="let functionLinks of functionLinks" mat-list-item href="{{functionLinks.url}}" target="_blank">
-      <mat-icon mat-list-icon>{{functionLinks.picture}}</mat-icon>
-      <h4 mat-line>{{functionLinks.titel}}</h4>
-      <p mat-line> {{functionLinks.description}} </p>
+    <a *ngFor="let functionLink of functionLinks" mat-list-item href="{{functionLink.url}}" target="_blank">
+      <mat-icon mat-list-icon>{{functionLink.icon}}</mat-icon>
+      <h4 mat-line>{{functionLink.title}}</h4>
+      <p mat-line> {{functionLink.description}} </p>
     </a>
+
     <mat-divider></mat-divider>
+
     <h3 mat-subheader>Wichtige Kontaktinfos</h3>
-   <mat-list-item *ngFor="let phoneLinks of phoneLinks">
-      <a mat-list-item href="{{phoneLinks.url}}">
-        <mat-icon mat-list-icon>{{phoneLinks.picture}}</mat-icon>
-        <h4 mat-line>{{phoneLinks.titel}}</h4>
-        <p mat-line> {{phoneLinks.description}} </p>
-      </a>
-      <a mat-list-item href="{{phoneLinks.mail}}">
-        <mat-icon>{{phoneLinks.mailPicture}}</mat-icon>
-        <h4 mat-line> </h4>
-        <p mat-line>{{phoneLinks.mailTitel}}</p>
-      </a>
-    </mat-list-item>
-    <h3 mat-subheader>Telefonnummern</h3>
-    <a *ngFor="let phoneLinks of phoneLinks" mat-list-item href="{{phoneLinks.url}}">
-      <mat-icon mat-list-icon>{{phoneLinks.picture}}</mat-icon>
-      <h4 mat-line>{{phoneLinks.titel}}</h4>
-      <p mat-line> {{phoneLinks.description}} </p>
+  </mat-nav-list>
+
+  <div class="contacts">
+    <mat-card class="contact-card" *ngFor="let contactInfo of contactInfos">
+      <mat-card-content>
+        <h3 matLine>{{contactInfo.name}}</h3>
+        <mat-divider></mat-divider>
+        <mat-nav-list>
+          <a [href]="'mailto:' + contactInfo.mail" mat-list-item>
+            <mat-icon matListIcon>mail</mat-icon>
+            <p matLine>{{contactInfo.mail}}</p>
+          </a>
+          <a [href]="'tel:' + contactInfo.phone" mat-list-item>
+            <mat-icon matListIcon>phone</mat-icon>
+            <p matLine>{{contactInfo.phone}}</p>
+          </a>
+        </mat-nav-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <mat-nav-list>
+    <mat-divider></mat-divider>
+    <h3 mat-subheader>Sonstiges</h3>
+    <a mat-list-item href="https://care-fs.iubh.de/de/studium/ansprechpartner.php" target="_blank" rel="noopener">
+      <h4 mat-line>Weitere Kontakte</h4>
+    </a>
+    <a mat-list-item href="https://login.microsoftonline.com/login.srf?wa=wsignin1.0&rpsnv=4&ct=1429188614&rver=6.6.6556.0&wp=MBI_SSL&wreply=https:%2F%2Foutlook.office365.com%2Fowa%2F%3Frealm%3Diubh.de%26vd%3Dmail&id=260563&whr=iubh.de&CBCXT=out" target="_blank" rel="noopener">
+      <h4 mat-line>E-Mail-Konto</h4>
     </a>
   </mat-nav-list>
 </div>
