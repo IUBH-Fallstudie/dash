@@ -26,8 +26,6 @@ export class TorComponent implements OnInit {
   }
 
   openBottomSheet(moduleData, semesterName): void {
-    console.log(moduleData);
-    console.log(semesterName);
     this.bottomSheet.open(ModuleDetailComponent, {
       data: {
         moduleData: moduleData,

@@ -13,14 +13,15 @@
     </div>
   </mat-toolbar>
 
-    <mat-nav-list>
-      <cdk-virtual-scroll-viewport class="list" itemSize="72">
+  <mat-nav-list>
+    <cdk-virtual-scroll-viewport class="list" itemSize="72">
       <mat-list-item *cdkVirtualFor="let course of dataService.allCourses
-      | searchCourses:term; templateCacheSize: dataService.allCourses.length" (click)="openCourseDescription(course.name)">
+      | searchCourses:term; templateCacheSize: dataService.allCourses.length"
+                     (click)="openBottomSheet(course)">
         <h4 mat-line>{{course.id}}</h4>
         <p mat-line> {{course.name}} </p>
         <mat-divider></mat-divider>
       </mat-list-item>
-      </cdk-virtual-scroll-viewport>
-    </mat-nav-list>
+    </cdk-virtual-scroll-viewport>
+  </mat-nav-list>
 </div>

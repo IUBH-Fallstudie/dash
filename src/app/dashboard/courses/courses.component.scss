@@ -24,13 +24,13 @@
   }
 }
 
-.mat-list {
+.mat-nav-list {
   margin-top: 0;
   padding-top: 0;
 
   overflow-y: auto;
 }
-.mat-list, .list {
+.mat-nav-list, .list {
   max-height: calc(100vh - 56px);
   height: 100vh;
   max-width: 100%;

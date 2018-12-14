@@ -96,8 +96,7 @@ registerLocaleData(localeDe, 'de');
     MatRippleModule,
     MatBottomSheetModule,
     MatTabsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-    Ng4LoadingSpinnerModule.forRoot()
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'de'},

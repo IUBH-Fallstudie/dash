@@ -43,7 +43,6 @@ export class BasicStatsComponent implements OnInit {
       d.average = gradeSum / (i + 1);
       return d;
     });
-    console.log(data);
 
     new Chart(this.chartRef.nativeElement, {
       type: 'line',

@@ -120,7 +120,6 @@ export class DataService {
     this.http.post('/moodle/auth', {user: user, pass: password})
       .subscribe(
         res => {
-          console.log(res);
           this._raw.userInfo = res;
           this._raw.userCredentials = {user: user, pass: password};
           callback(true);
@@ -133,6 +132,7 @@ export class DataService {
 
     this.http.post('/en/', `login-form=login-form&user=${user}&password=${password}&login-referrer=`,
       {
+        responseType: 'text',
         headers: new HttpHeaders(
           {
             'Content-Type': 'application/x-www-form-urlencoded',

@@ -1,9 +1,6 @@
-import {ChangeDetectorRef, Component, ErrorHandler, Inject, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {DataService} from '../../../data.service';
-import {Ng4LoadingSpinnerModule} from 'ng4-loading-spinner';
-import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'dash-module-detail',
@@ -20,7 +17,7 @@ export class ModuleDetailComponent implements OnInit {
 
   ngOnInit() {
     this.data.moduleData.handbookLoading = true;
-    this.loadHandbook(this.data.moduleData, 'modul');
+    this.loadHandbook(this.data.moduleData, this.data.searchView ? 'kurs' : 'modul');
     for (const course of this.data.moduleData.courses) {
       course.handbookLoading = true;
       this.loadHandbook(course, 'kurs');
