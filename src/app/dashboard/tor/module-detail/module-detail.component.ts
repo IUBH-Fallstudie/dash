@@ -8,6 +8,7 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./module-detail.component.scss'],
 })
 export class ModuleDetailComponent implements OnInit {
+  public loading: boolean;
 
   public loading = false;
 

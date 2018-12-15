@@ -9,6 +9,8 @@ import {DataService} from '../../data.service';
   styleUrls: ['./tor.component.scss'],
 })
 export class TorComponent implements OnInit {
+  public step = '';
+
   constructor(private bottomSheet: MatBottomSheet, public dataService: DataService) {
   }
 
