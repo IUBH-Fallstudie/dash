@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {DataService} from "../data.service";
 import {MatSnackBar} from "@angular/material";
-import {LinkPreview, MatLinkPreviewService} from '@angular-material-extensions/link-preview';
-import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'dash-login',
@@ -20,14 +18,12 @@ export class LoginComponent implements OnInit {
   public backgroundIllustration = '';
 
 
-  constructor(private router: Router, private dataService: DataService, public snackBar: MatSnackBar,
-              private titleService: Title, public linkPreviewService: MatLinkPreviewService) {
+  constructor(private router: Router, private dataService: DataService, public snackBar: MatSnackBar) {
     const illustrations = ['examen', 'finish', 'laptop', 'study'];
     this.backgroundIllustration = illustrations[Math.floor(Math.random() * illustrations.length)]
   }
 
   ngOnInit() {
-    this.titleService.setTitle('Dash Campus - Demo-App für die IUBH');
   }
 
   public login(): void {
@@ -50,14 +46,5 @@ export class LoginComponent implements OnInit {
   get canLogin(): boolean {
     return !(this.user === '' || this.pass === '')
   }
-
-  linkExample: LinkPreview = {
-    title: 'Dash',
-    description: 'Dash soll die IT-Systemlandschaft des IUBH-Fernstudiums zusammenführen und zugänglicher machen.\n' +
-      '        Daten aus den Plattformen myCampus und Care sollen\n' +
-      '        übersichtlich dargestellt und wichtige Informationen hervorgehoben werden.',
-    image: 'assets/android-chrome-192x192.png',
-    url: 'https://dash.g1b.me/'
-  };
 
 }
