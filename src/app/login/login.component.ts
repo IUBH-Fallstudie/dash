@@ -26,8 +26,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-
-
   public login(): void {
     if (this.canLogin) {
       this.loading = true;
