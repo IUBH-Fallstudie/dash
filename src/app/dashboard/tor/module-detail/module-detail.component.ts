@@ -1,8 +1,6 @@
 import {Component, ErrorHandler, Inject, OnInit} from '@angular/core';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {DataService} from '../../../data.service';
-import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
@@ -11,6 +9,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
   styleUrls: ['./module-detail.component.scss'],
 })
 export class ModuleDetailComponent implements OnInit {
+  public loading: boolean;
 
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public dataBottom: any, private bottomSheetRef: MatBottomSheetRef<ModuleDetailComponent>,
               private http: HttpClient, private _loadingSpinner: Ng4LoadingSpinnerService) {
@@ -22,7 +21,8 @@ export class ModuleDetailComponent implements OnInit {
   }
 
   openCourseDescription (name, semester) {
-      this._loadingSpinner.show();
+      this.loading = true;
+      // this._loadingSpinner.show();
       this.http.get('/kurs/' + name.toLowerCase().replace(' ', '_'))
         .subscribe(
         (res) => {
@@ -37,7 +37,8 @@ export class ModuleDetailComponent implements OnInit {
           }
           console.log('Semester', semester);
           }, () => {
-          this._loadingSpinner.hide();
+          // this._loadingSpinner.hide();
+            this.loading = false;
           });
   }
 

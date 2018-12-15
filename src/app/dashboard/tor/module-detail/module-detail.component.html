@@ -1,4 +1,4 @@
-<div class="module-detail">
+<div class="module-detail" *ngIf="!loading">
   <h3 mat-line>{{dataBottom.moduleData.id}}</h3>
   <mat-nav-list>
     <h3 mat-subheader>Kurse</h3>
@@ -12,3 +12,9 @@
     </mat-list-item>
   </mat-nav-list>
 </div>
+<div class="loading" *ngIf="loading">
+  <mat-progress-spinner [color]="'accent'" [mode]="'indeterminate'"></mat-progress-spinner>
+  <h3>Ladevorgang</h3>
+  <span matLine>Das kann ein paar Sekunden dauern.</span>
+</div>
+

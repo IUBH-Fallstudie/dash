@@ -27,11 +27,5 @@
         <p mat-line>{{phoneLinks.mailTitel}}</p>
       </a>
     </mat-list-item>
-    <h3 mat-subheader>Telefonnummern</h3>
-    <a *ngFor="let phoneLinks of phoneLinks" mat-list-item href="{{phoneLinks.url}}">
-      <mat-icon mat-list-icon>{{phoneLinks.picture}}</mat-icon>
-      <h4 mat-line>{{phoneLinks.titel}}</h4>
-      <p mat-line> {{phoneLinks.description}} </p>
-    </a>
   </mat-nav-list>
 </div>

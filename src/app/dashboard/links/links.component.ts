@@ -31,7 +31,7 @@ export class LinksComponent implements OnInit {
     new Link('phone', 'tel:+4986519023456', 'Anerkennung', '+49 (0)8651 90234 56',
       'mailto:anerkennung@iubh-fernstudium.de', 'anerkennung@iubh-fernstudium.de', 'mail'),
     new Link('public', 'https://care-fs.iubh.de/de/studium/ansprechpartner.php', 'Weitere Kontakte',
-      'https://care-fs.iubh.de/de/studium/ansprechpartner.php', '', '', ''),
+      'https://care-fs.iubh.de/de/studium/ansprechpartner.php', 'https://care-fs.iubh.de/de/studium/ansprechpartner.php', '', ''),
     ];
 
   constructor() {

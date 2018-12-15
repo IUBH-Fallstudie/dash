@@ -4,6 +4,9 @@ import {MatInput} from '@angular/material';
 import {animate, state, style, transition, trigger, AnimationEvent} from '@angular/animations';
 import {HttpClient} from '@angular/common/http';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import {Router} from '@angular/router';
+import {DashboardComponent} from '../dashboard.component';
+import {TorComponent} from '../tor/tor.component';
 
 @Component({
   selector: 'dash-courses',
@@ -38,7 +41,8 @@ export class CoursesComponent implements OnInit {
   public term = '';
   public closed = false;
 
-  constructor(public dataService: DataService, private http: HttpClient, private _loadingSpinner: Ng4LoadingSpinnerService) {
+  constructor(public dataService: DataService, private http: HttpClient, private _loadingSpinner: Ng4LoadingSpinnerService,
+              private router: Router, private dash: DashboardComponent, private tor: TorComponent) {
     this.close = new EventEmitter<any>();
   }
 
@@ -77,6 +81,16 @@ export class CoursesComponent implements OnInit {
           this._loadingSpinner.hide();
         });
   }
+
+  openRecords(name) {
+    const semester = this.searchSemesterData(name).toString();
+    this.closed = true;
+    this.router.navigate(['']);
+    // Hier noch das richtige Panel öffnen
+    this.tor.step = semester;
+    console.log(this.tor.step);
+  }
+
   public searchSemesterData(name): any {
     for (let semester of this.dataService._raw.transcriptOfRecords.tor) {
       console.log(semester);
