@@ -45,6 +45,7 @@ import {environment} from '../environments/environment';
 import { SafeUrlPipe } from './safe-url.pipe';
 import { MoodleLinkDirective } from './moodle-link/moodle-link.directive';
 import { MoodleLinkDialogComponent } from './moodle-link/moodle-link-dialog.component';
+import { MatLinkPreviewModule } from '@angular-material-extensions/link-preview';
 
 registerLocaleData(localeDe, 'de');
 
@@ -95,6 +96,7 @@ registerLocaleData(localeDe, 'de');
     MatRippleModule,
     MatBottomSheetModule,
     MatTabsModule,
+    MatLinkPreviewModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [
