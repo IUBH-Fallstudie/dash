@@ -3,8 +3,9 @@ import {DataService} from '../../data.service';
 import {MatBottomSheet, MatInput} from '@angular/material';
 import {animate, state, style, transition, trigger, AnimationEvent} from '@angular/animations';
 import {HttpClient} from '@angular/common/http';
-import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
 import {ModuleDetailComponent} from '../tor/module-detail/module-detail.component';
+import {TorComponent} from '../tor/tor.component';
+import {DashboardComponent} from '../dashboard.component';
 
 @Component({
   selector: 'dash-courses',
@@ -39,7 +40,8 @@ export class CoursesComponent implements OnInit {
   public term = '';
   public closed = false;
 
-  constructor(public dataService: DataService, private http: HttpClient, private bottomSheet: MatBottomSheet) {
+  constructor(public dataService: DataService, private http: HttpClient, private bottomSheet: MatBottomSheet,
+              private dash: DashboardComponent, private tor: TorComponent) {
     this.close = new EventEmitter<any>();
   }
 
@@ -58,20 +60,27 @@ export class CoursesComponent implements OnInit {
     }
   }
 
-  //TODO
+  // TODO
   public searchSemesterData(name): any {
-    for (let semester of this.dataService._raw.transcriptOfRecords.tor) {
+    for (const semester of this.dataService._raw.transcriptOfRecords.tor) {
       console.log(semester);
-      for (let module of semester.modules) {
-        for (let courses of module.courses) {
-          if (courses.name == name) {
+      for (const module of semester.modules) {
+        for (const courses of module.courses) {
+          if (courses.name === name) {
             console.log(name, semester, 'hat geklappt');
-            return semester.toString();
+            return semester.name.toString();
           }
         }
       }
     }
     return;
+  }
+
+  openRecords(name) {
+    this.dash.closeSearch();
+    const semesterName = this.searchSemesterData(name);
+    console.log(semesterName, 'test');
+    this.tor.setStep(semesterName);
   }
 
   openBottomSheet(data): void {
@@ -92,7 +101,8 @@ export class CoursesComponent implements OnInit {
 export class SearchCoursesFilter implements PipeTransform {
   transform(courses: any[], term: string): any[] {
     if (term !== '') {
-      return courses.filter(course => !(!course.id.toLowerCase().includes(term.toLowerCase()) && !course.name.toLowerCase().includes(term.toLowerCase())));
+      return courses.filter(course => !(!course.id.toLowerCase().includes(term.toLowerCase())
+        && !course.name.toLowerCase().includes(term.toLowerCase())));
     }
     return courses;
   }

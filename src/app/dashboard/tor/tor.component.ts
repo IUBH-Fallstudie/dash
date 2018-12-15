@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import {MatBottomSheet} from '@angular/material';
 import {ModuleDetailComponent} from './module-detail/module-detail.component';
 import {DataService} from '../../data.service';
+import {CoursesComponent} from '../courses/courses.component';
 
 @Component({
   selector: 'dash-tor',
@@ -9,14 +10,18 @@ import {DataService} from '../../data.service';
   styleUrls: ['./tor.component.scss'],
 })
 export class TorComponent implements OnInit {
-  public step = '';
 
   constructor(private bottomSheet: MatBottomSheet, public dataService: DataService) {
+  }
+  private _step = '';
+
+  public setStep(step: string) {
+    this._step = step;
+    console.log(this._step);
   }
 
   ngOnInit() {
   }
-
 
   calcSemesterProgress(semester: any) {
     let passedModules = 0;

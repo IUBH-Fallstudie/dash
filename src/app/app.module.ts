@@ -42,7 +42,6 @@ import localeDe from '@angular/common/locales/de';
 import {registerLocaleData} from "@angular/common";
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
-import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { SafeUrlPipe } from './safe-url.pipe';
 import { MoodleLinkDirective } from './moodle-link/moodle-link.directive';
 import { MoodleLinkDialogComponent } from './moodle-link/moodle-link-dialog.component';

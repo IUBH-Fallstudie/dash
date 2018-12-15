@@ -4,6 +4,8 @@ import { animate, state, style, transition, trigger } from "@angular/animations"
 import { Meta } from "@angular/platform-browser";
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material";
+import {TorComponent} from './tor/tor.component';
+import {CoursesComponent} from './courses/courses.component';
 
 @Component({
   selector: 'dash-dashboard',
@@ -37,7 +39,8 @@ export class DashboardComponent implements OnInit {
 
   public searchOpen = false;
 
-  constructor(private dataService: DataService, private meta: Meta, private router: Router, private route: ActivatedRoute, private snackBar: MatSnackBar, private cdRef: ChangeDetectorRef) {
+  constructor(private dataService: DataService, private meta: Meta, private router: Router, private route: ActivatedRoute,
+              private snackBar: MatSnackBar, private cdRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {

@@ -8,8 +8,6 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./module-detail.component.scss'],
 })
 export class ModuleDetailComponent implements OnInit {
-  public loading: boolean;
-
   public loading = false;
 
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any, private bottomSheetRef: MatBottomSheetRef<ModuleDetailComponent>,
