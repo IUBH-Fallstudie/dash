@@ -96,7 +96,7 @@ registerLocaleData(localeDe, 'de');
     MatRippleModule,
     MatBottomSheetModule,
     MatTabsModule,
-    MatLinkPreviewModule.forRoot(),
+    MatLinkPreviewModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [

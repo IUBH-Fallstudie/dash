@@ -12,6 +12,17 @@ import {Title} from '@angular/platform-browser';
 })
 export class LoginComponent implements OnInit {
 
+
+  constructor(private router: Router, private dataService: DataService, public snackBar: MatSnackBar,
+              private titleService: Title) {
+    const illustrations = ['examen', 'finish', 'laptop', 'study'];
+    this.backgroundIllustration = illustrations[Math.floor(Math.random() * illustrations.length)]
+  }
+
+  get canLogin(): boolean {
+    return !(this.user === '' || this.pass === '')
+  }
+
   public user: string = '';
   public pass: string = '';
 
@@ -19,12 +30,14 @@ export class LoginComponent implements OnInit {
 
   public backgroundIllustration = '';
 
-
-  constructor(private router: Router, private dataService: DataService, public snackBar: MatSnackBar,
-              private titleService: Title, public linkPreviewService: MatLinkPreviewService) {
-    const illustrations = ['examen', 'finish', 'laptop', 'study'];
-    this.backgroundIllustration = illustrations[Math.floor(Math.random() * illustrations.length)]
-  }
+  linkExample: LinkPreview = {
+    title: 'Dash',
+    description: 'Dash soll die IT-Systemlandschaft des IUBH-Fernstudiums zusammenführen und zugänglicher machen.\n' +
+      '        Daten aus den Plattformen myCampus und Care sollen\n' +
+      '        übersichtlich dargestellt und wichtige Informationen hervorgehoben werden.',
+    image: 'assets/android-chrome-192x192.png',
+    url: 'https://dash.g1b.me/'
+  };
 
   ngOnInit() {
     this.titleService.setTitle('Dash Campus - Demo-App für die IUBH');
@@ -46,18 +59,5 @@ export class LoginComponent implements OnInit {
       });
     }
   }
-
-  get canLogin(): boolean {
-    return !(this.user === '' || this.pass === '')
-  }
-
-  linkExample: LinkPreview = {
-    title: 'Dash',
-    description: 'Dash soll die IT-Systemlandschaft des IUBH-Fernstudiums zusammenführen und zugänglicher machen.\n' +
-      '        Daten aus den Plattformen myCampus und Care sollen\n' +
-      '        übersichtlich dargestellt und wichtige Informationen hervorgehoben werden.',
-    image: 'assets/android-chrome-192x192.png',
-    url: 'https://dash.g1b.me/'
-  };
 
 }
