@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
-import {DataService} from "../data.service";
-import {MatSnackBar} from "@angular/material";
+import {Router} from '@angular/router';
+import {DataService} from '../data.service';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'dash-login',
@@ -11,39 +11,21 @@ import {MatSnackBar} from "@angular/material";
 export class LoginComponent implements OnInit {
 
 
-  constructor(private router: Router, private dataService: DataService, public snackBar: MatSnackBar,
-              private titleService: Title) {
+  constructor(private router: Router, private dataService: DataService, public snackBar: MatSnackBar) {
     const illustrations = ['examen', 'finish', 'laptop', 'study'];
-    this.backgroundIllustration = illustrations[Math.floor(Math.random() * illustrations.length)]
+    this.backgroundIllustration = illustrations[Math.floor(Math.random() * illustrations.length)];
   }
 
   get canLogin(): boolean {
-    return !(this.user === '' || this.pass === '')
+    return !(this.user === '' || this.pass === '');
   }
 
-  public user: string = '';
-  public pass: string = '';
+  public user = '';
+  public pass = '';
 
-  public loading: boolean = false;
+  public loading = false;
 
   public backgroundIllustration = '';
-
-<<<<<<< HEAD
-  linkExample: LinkPreview = {
-    title: 'Dash',
-    description: 'Dash soll die IT-Systemlandschaft des IUBH-Fernstudiums zusammenführen und zugänglicher machen.\n' +
-      '        Daten aus den Plattformen myCampus und Care sollen\n' +
-      '        übersichtlich dargestellt und wichtige Informationen hervorgehoben werden.',
-    image: 'assets/android-chrome-192x192.png',
-    url: 'https://dash.g1b.me/'
-  };
-=======
-
-  constructor(private router: Router, private dataService: DataService, public snackBar: MatSnackBar) {
-    const illustrations = ['examen', 'finish', 'laptop', 'study'];
-    this.backgroundIllustration = illustrations[Math.floor(Math.random() * illustrations.length)]
-  }
->>>>>>> 1d1f23bf8b5698fa498410ff8a1b20b31d5a23d5
 
   ngOnInit() {
   }
@@ -64,12 +46,4 @@ export class LoginComponent implements OnInit {
       });
     }
   }
-
-<<<<<<< HEAD
-=======
-  get canLogin(): boolean {
-    return !(this.user === '' || this.pass === '')
-  }
-
->>>>>>> 1d1f23bf8b5698fa498410ff8a1b20b31d5a23d5
 }

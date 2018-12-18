@@ -95,10 +95,6 @@ registerLocaleData(localeDe, 'de');
     MatRippleModule,
     MatBottomSheetModule,
     MatTabsModule,
-<<<<<<< HEAD
-    MatLinkPreviewModule,
-=======
->>>>>>> 1d1f23bf8b5698fa498410ff8a1b20b31d5a23d5
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [
