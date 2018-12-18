@@ -80,7 +80,7 @@ export class CoursesComponent implements OnInit {
     this.dash.closeSearch();
     const semesterName = this.searchSemesterData(name);
     console.log(semesterName, 'test');
-    // this.tor.setStep(semesterName);
+    this.tor.setStep(semesterName);
   }
 
   openBottomSheet(data): void {
