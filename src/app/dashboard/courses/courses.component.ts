@@ -4,8 +4,7 @@ import {MatBottomSheet, MatInput} from '@angular/material';
 import {animate, state, style, transition, trigger, AnimationEvent} from '@angular/animations';
 import {HttpClient} from '@angular/common/http';
 import {ModuleDetailComponent} from '../tor/module-detail/module-detail.component';
-import {TorComponent} from '../tor/tor.component';
-import {DashboardComponent} from '../dashboard.component';
+import {SearchService} from './search.service';
 
 @Component({
   selector: 'dash-courses',
@@ -41,7 +40,7 @@ export class CoursesComponent implements OnInit {
   public closed = false;
 
   constructor(public dataService: DataService, private http: HttpClient, private bottomSheet: MatBottomSheet,
-              private dash: DashboardComponent, private tor: TorComponent) {
+              public torService: SearchService) {
     this.close = new EventEmitter<any>();
   }
 
@@ -77,10 +76,10 @@ export class CoursesComponent implements OnInit {
   }
 
   openRecords(name) {
-    this.dash.closeSearch();
+    this.closed = true;
     const semesterName = this.searchSemesterData(name);
     console.log(semesterName, 'test');
-    this.tor.setStep(semesterName);
+    this.torService.openTor(semesterName);
   }
 
   openBottomSheet(data): void {

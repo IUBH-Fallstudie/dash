@@ -1,7 +1,7 @@
 <div class="tor">
   <mat-accordion>
     <mat-expansion-panel *ngFor="let semesterData of dataService.transcriptOfRecords.tor"
-                         [expanded]="_step === semesterData.name" (opened)="setStep(semesterData.name)">
+                         [expanded]="searchService.semester === semesterData.name" (opened)="searchService.openTor(semesterData.name)">
       <mat-expansion-panel-header>
         <mat-panel-title>{{semesterData.name}}</mat-panel-title>
         <!--<mat-panel-description *ngIf="semesterData.name.includes('Semester')">{{calcSemesterProgress(semesterData.modules)}}%</mat-panel-description>-->

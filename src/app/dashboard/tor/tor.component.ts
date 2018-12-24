@@ -3,6 +3,7 @@ import {MatBottomSheet} from '@angular/material';
 import {ModuleDetailComponent} from './module-detail/module-detail.component';
 import {DataService} from '../../data.service';
 import {CoursesComponent} from '../courses/courses.component';
+import {SearchService} from '../courses/search.service';
 
 @Component({
   selector: 'dash-tor',
@@ -11,13 +12,7 @@ import {CoursesComponent} from '../courses/courses.component';
 })
 export class TorComponent implements OnInit {
 
-  constructor(private bottomSheet: MatBottomSheet, public dataService: DataService) {
-  }
-  private _step = '';
-
-  public setStep(step: string) {
-    this._step = step;
-    console.log(this._step);
+  constructor(private bottomSheet: MatBottomSheet, public dataService: DataService, public searchService: SearchService) {
   }
 
   ngOnInit() {
