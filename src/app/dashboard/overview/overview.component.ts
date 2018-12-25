@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {DataService} from '../../data.service';
 
 @Component({
   selector: 'dash-overview',
@@ -7,7 +8,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class OverviewComponent implements OnInit {
 
-  constructor() {
+  constructor(public dataService: DataService) {
   }
 
   ngOnInit() {

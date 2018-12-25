@@ -1,5 +1,5 @@
 <dash-basic-stats></dash-basic-stats>
-<div class="overview">
+<div class="overview" *ngIf="dataService.activeMoodleCourses.length > 0">
   <dash-moodle-courses></dash-moodle-courses>
 </div>
 <div class="calendar">

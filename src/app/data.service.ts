@@ -1,5 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Course, TranscriptOfRecords} from './classes/TranscriptOfRecords';
+import {MoodleCourse} from './classes/MoodleCourse';
+import {UserInfo} from './classes/UserInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +10,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class DataService {
 
   public _raw = {
-    transcriptOfRecords: {tor: [], weightedOverall: 0},
+    transcriptOfRecords: new TranscriptOfRecords([], 0),
     moodleCourses: [],
     userCredentials: undefined,
     userInfo: {},
@@ -18,12 +21,12 @@ export class DataService {
     this.loadLocal();
   }
 
-  public get transcriptOfRecords() {
+  public get transcriptOfRecords(): TranscriptOfRecords {
     return this._raw.transcriptOfRecords;
   }
 
-  public get userInfo() {
-    return this._raw.userInfo;
+  public get userInfo(): UserInfo {
+    return this._raw.userInfo as UserInfo;
   }
 
   // Das ist definitv bad practise! Bessere Lösungen erfordern, dass der Nutzer für jede Session sein PW erneut eingibt
@@ -38,7 +41,7 @@ export class DataService {
     this.saveLocal();
   }
 
-  public get allCourses(): any[] {
+  public get allCourses(): Course[] {
     const courses = [];
     for (let semester of this._raw.transcriptOfRecords.tor) {
       for (let module of semester.modules) {
@@ -50,11 +53,11 @@ export class DataService {
     return courses;
   }
 
-  public get moodleCourses(): any[] {
+  public get moodleCourses(): MoodleCourse[] {
     return this._raw.moodleCourses;
   }
 
-  public get activeMoodleCourses(): any[] {
+  public get activeMoodleCourses(): MoodleCourse[] {
     const activeCourses = [];
     for (const torCourse of this.allCourses) {
       for (const moodleCourse of this.moodleCourses) {
@@ -99,11 +102,11 @@ export class DataService {
     };
   }
 
-  public get isLoggedIn() {
+  public get isLoggedIn(): boolean {
     return this.userCredentials && this.userCredentials['user'];
   }
 
-  public get moodleAppInstalled() {
+  public get moodleAppInstalled(): boolean {
     return this._raw.moodleAppInstalled;
   }
 
@@ -112,7 +115,7 @@ export class DataService {
     this.saveLocal();
   }
 
-  public fetchRawInfo() {
+  public fetchRawInfo(): void {
     this.http.get('/care/tor').subscribe(
       (res: any) => {
         this._raw.transcriptOfRecords = res;
@@ -128,7 +131,7 @@ export class DataService {
     );
   }
 
-  public authenticate(user: string, password: string, callback: any) {
+  public authenticate(user: string, password: string, callback: any): void {
     this.http.post('/moodle/auth', {user: user, pass: password})
       .subscribe(
         res => {
@@ -159,18 +162,18 @@ export class DataService {
 
   }
 
-  private saveLocal() {
+  private saveLocal(): void {
     window.localStorage.setItem('_raw', JSON.stringify(this._raw));
   }
 
-  private loadLocal() {
+  private loadLocal(): void {
     const localState = window.localStorage.getItem('_raw');
     if (localState !== null && localState !== undefined) {
       this._raw = JSON.parse(window.localStorage.getItem('_raw'));
     }
   }
 
-  public logout() {
+  public logout(): void {
     this._raw = undefined;
     window.localStorage.removeItem('_raw');
     location.reload();
