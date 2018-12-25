@@ -58,7 +58,6 @@ export class CoursesComponent implements OnInit {
     }
   }
 
-  // TODO
   public getCourseInfo(courseId): any {
     for (const semester of this.dataService.transcriptOfRecords.tor) {
       for (const module of semester.modules) {
