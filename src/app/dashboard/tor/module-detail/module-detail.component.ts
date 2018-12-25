@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
-import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material';
+import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef, MatSnackBar} from '@angular/material';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -11,7 +11,7 @@ export class ModuleDetailComponent implements OnInit {
   public loading = false;
 
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any, private bottomSheetRef: MatBottomSheetRef<ModuleDetailComponent>,
-              private http: HttpClient, private cdRef: ChangeDetectorRef) {
+              private http: HttpClient, private cdRef: ChangeDetectorRef, public snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -53,7 +53,7 @@ export class ModuleDetailComponent implements OnInit {
     }
     return lastStatus === 'B' && hasOpenCourse ? 'A' : lastStatus;
   }
-  
+
   private generateHandbookLink(prefix: string, courseName: string): string {
     let urlCourseName = courseName.toLowerCase().replace(new RegExp(' ', 'g'), '-');
     urlCourseName = urlCourseName.replace(/ä/g, 'ae');
@@ -61,6 +61,10 @@ export class ModuleDetailComponent implements OnInit {
     urlCourseName = urlCourseName.replace(/ü/g, 'ue');
     urlCourseName = urlCourseName.replace(/ß/g, 'ss');
     return `/${prefix}/${urlCourseName}/`;
+  }
+
+  openSnackBar() {
+    this.snackBar.open('Entschuldige. Das Modulhandbuch ist nicht verfügbar.', 'OK',{duration: 2000});
   }
 }
 

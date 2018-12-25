@@ -6,7 +6,7 @@
        [href]="data.moduleData.handbookLink" target="_blank" rel="noopener"><mat-icon>class</mat-icon>
     </a>
     <mat-icon class="not-found"
-              *ngIf="!data.moduleData.handbookLoading && !data.moduleData.handbookLink">class</mat-icon>
+              *ngIf="!data.moduleData.handbookLoading && !data.moduleData.handbookLink" (click)="openSnackBar()">class</mat-icon>
     <mat-progress-spinner *ngIf="data.moduleData.handbookLoading" [color]="'accent'" [mode]="'indeterminate'"
                           [diameter]="24"></mat-progress-spinner>
   </span> {{data.moduleData.name}}
@@ -19,7 +19,7 @@
            target="_blank" rel="noopener">
           <mat-icon>class</mat-icon>
         </a>
-        <mat-icon class="not-found" *ngIf="!course.handbookLoading && !course.handbookLink">class</mat-icon>
+        <mat-icon class="not-found" *ngIf="!course.handbookLoading && !course.handbookLink" (click)="openSnackBar()">class</mat-icon>
         <mat-progress-spinner *ngIf="course.handbookLoading" [color]="'accent'" [mode]="'indeterminate'"
                               [diameter]="24"></mat-progress-spinner>
       </div>
