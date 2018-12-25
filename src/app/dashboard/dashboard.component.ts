@@ -48,7 +48,7 @@ export class DashboardComponent implements OnInit {
 
     this.dataService.fetchRawInfo();
 
-    this.dataService.authenticate(this.dataService._raw.userCredentials['user'], this.dataService._raw.userCredentials['pass'], success => {
+    this.dataService.authenticate(this.dataService.userCredentials['user'], this.dataService.userCredentials['pass'], success => {
       if (!success) {
         this.router.navigate(['auth']);
         this.snackBar.open('Dein Passwort scheint sich geändert zu haben. Bitte logge dich erneut ein.', 'Okay', {

@@ -4,10 +4,10 @@
 
     <mat-menu #appMenu="matMenu">
       <button mat-menu-item *ngIf="showMoodleAppInstalledSetting()"><mat-slide-toggle [(ngModel)]="dataService.moodleAppInstalled">Moodle App installiert</mat-slide-toggle></button>
-      <button mat-menu-item (click)="dataService.logout()">Ausloggen</button>
+      <button mat-menu-item *ngIf="dataService.isLoggedIn" (click)="dataService.logout()">Ausloggen</button>
     </mat-menu>
 
-    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+    <button mat-icon-button [matMenuTriggerFor]="appMenu" *ngIf="showMoodleAppInstalledSetting() || dataService.isLoggedIn">
       <mat-icon>more_vert</mat-icon>
     </button>
   </mat-toolbar>

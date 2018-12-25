@@ -9,7 +9,7 @@ export class DataService {
   public _raw = {
     transcriptOfRecords: {tor: [], weightedOverall: 0},
     moodleCourses: [],
-    userCredentials: {},
+    userCredentials: undefined,
     userInfo: {},
     moodleAppInstalled: undefined
   };
@@ -24,6 +24,18 @@ export class DataService {
 
   public get userInfo() {
     return this._raw.userInfo;
+  }
+
+  // Das ist definitv bad practise! Bessere Lösungen erfordern, dass der Nutzer für jede Session sein PW erneut eingibt
+  public get userCredentials() {
+    if (this._raw.userCredentials) {
+      return JSON.parse(window.atob(this._raw.userCredentials));
+    }
+  }
+
+  public set userCredentials(userCredentials: any) {
+    this._raw.userCredentials = window.btoa(JSON.stringify(userCredentials));
+    this.saveLocal();
   }
 
   public get allCourses(): any[] {
@@ -88,7 +100,7 @@ export class DataService {
   }
 
   public get isLoggedIn() {
-    return this._raw.userCredentials && this._raw.userCredentials['user'];
+    return this.userCredentials && this.userCredentials['user'];
   }
 
   public get moodleAppInstalled() {
@@ -108,7 +120,7 @@ export class DataService {
       }
     );
 
-    this.http.post('/moodle/overview', this._raw.userCredentials).subscribe(
+    this.http.post('/moodle/overview', this.userCredentials).subscribe(
       (res: any[]) => {
         this._raw.moodleCourses = res;
         this.saveLocal();
@@ -121,7 +133,7 @@ export class DataService {
       .subscribe(
         res => {
           this._raw.userInfo = res;
-          this._raw.userCredentials = {user: user, pass: password};
+          this.userCredentials = {user: user, pass: password};
           callback(true);
         },
         err => {
