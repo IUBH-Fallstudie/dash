@@ -13,7 +13,7 @@
   </h3>
   <mat-list>
     <h3 mat-subheader *ngIf="data.moduleData.courses?.length > 0">Kurse</h3>
-    <mat-list-item *ngFor="let course of data.moduleData.courses">
+    <mat-list-item *ngFor="let course of data.moduleData.courses" [ngClass]="{'highlight': course.id === data.highlightCourse}">
       <div matListIcon mat-ripple [matRippleDisabled]="course.handbookLoading || !course.handbookLink">
         <a class="handbook-link" *ngIf="!course.handbookLoading && course.handbookLink" [href]="course.handbookLink"
            target="_blank" rel="noopener">

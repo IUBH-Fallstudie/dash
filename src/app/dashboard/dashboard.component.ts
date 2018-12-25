@@ -104,6 +104,9 @@ export class DashboardComponent implements OnInit {
         break;
     }
     this.pseudoNavigate(url);
+
+    this.currentIndex = this.tabIndex;
+    this.activeIndex = this.tabIndex;
   }
 
 }

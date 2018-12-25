@@ -12,6 +12,10 @@
     .mat-form-field-infix {
       border-top: none;
     }
+    .mat-form-field-suffix .mat-icon {
+      font-size: 125%;
+      cursor: pointer;
+    }
   }
 }
 

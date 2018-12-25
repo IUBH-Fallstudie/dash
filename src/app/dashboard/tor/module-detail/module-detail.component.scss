@@ -34,6 +34,7 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-width: 52px;
 }
 
 .mat-list-icon {
@@ -51,4 +52,8 @@ h3 {
 
 .not-found {
   opacity: 0.5;
+}
+
+.highlight {
+  background-color: rgba(16, 52, 64, 0.1);
 }

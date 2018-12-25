@@ -64,7 +64,7 @@ export class ModuleDetailComponent implements OnInit {
   }
 
   openSnackBar() {
-    this.snackBar.open('Entschuldige. Das Modulhandbuch ist nicht verfügbar.', 'OK',{duration: 2000});
+    this.snackBar.open('Modulhandbuch nicht gefunden.', 'OK', {duration: 5000});
   }
 }
 

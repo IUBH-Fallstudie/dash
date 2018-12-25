@@ -53,21 +53,22 @@ export class CoursesComponent implements OnInit {
   }
 
   onAnimationEvent(event: AnimationEvent) {
-    console.log(event);
     if (event.fromState === 'open' && event.toState === 'close') {
       this.onClose();
     }
   }
 
   // TODO
-  public searchSemesterData(name): any {
-    for (const semester of this.dataService._raw.transcriptOfRecords.tor) {
-      console.log(semester);
+  public getCourseInfo(courseId): any {
+    for (const semester of this.dataService.transcriptOfRecords.tor) {
       for (const module of semester.modules) {
-        for (const courses of module.courses) {
-          if (courses.name === name) {
-            console.log(name, semester, 'hat geklappt');
-            return semester.name.toString();
+        for (const course of module.courses) {
+          if (course.id === courseId) {
+            return {
+              semesterName: semester.name,
+              module: module,
+              courseId: course.id
+            }
           }
         }
       }
@@ -75,18 +76,19 @@ export class CoursesComponent implements OnInit {
     return;
   }
 
-  openRecords(name) {
+  openRecords(course: any) {
     this.closed = true;
-    const semesterName = this.searchSemesterData(name);
-    console.log(semesterName, 'test');
-    this.torService.openTor(semesterName);
+    const courseInfo = this.getCourseInfo(course.id);
+    this.torService.openTor(courseInfo.semesterName);
+    this.openBottomSheet(courseInfo.module, courseInfo.courseId);
   }
 
-  openBottomSheet(data): void {
+  openBottomSheet(module, highlightCourse): void {
     this.bottomSheet.open(ModuleDetailComponent, {
       data: {
-        moduleData: data,
+        moduleData: module,
         searchView: true,
+        highlightCourse: highlightCourse
       }
     });
   }

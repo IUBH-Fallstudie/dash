@@ -85,7 +85,8 @@ export class BasicStatsComponent implements OnInit {
             },
             ticks: {
               fontColor: 'white',
-              showLabelBackdrop: false
+              showLabelBackdrop: false,
+              reverse: true
             },
           }],
         },
