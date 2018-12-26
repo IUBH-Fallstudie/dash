@@ -30,6 +30,9 @@ export class SemesterTableComponent implements OnInit {
   }
 
   getStatus(module) {
+    if (module.status === 'B') {
+      return 'B';
+    }
     if (module.courses.length === 1) {
       return module.courses[0].status;
     }

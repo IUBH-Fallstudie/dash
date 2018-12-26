@@ -8,3 +8,7 @@
     <mat-divider [hidden]="i+1 === dataService.upcomingActiveCourseEvents.length"></mat-divider>
   </div>
 </mat-action-list>
+
+<p class="no-events" *ngIf="dataService.upcomingActiveCourseEvents.length === 0">
+  Für deine aktiven Kurse sind keine kommenden Tutorien geplant.
+</p>

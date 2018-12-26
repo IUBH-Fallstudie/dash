@@ -9,7 +9,7 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main.a48e42d786cae2a5f21d.js",
+        "/main.ae56e99d769a0d7306ab.js",
         "/polyfills.d1c7bf4a2ae7c3435f95.js",
         "/runtime.ec2944dd8b20ec099bf3.js",
         "/styles.2cd04144d68f1fa7d4f7.css"
@@ -54,8 +54,8 @@
     "/assets/illustrations/laptop.svg": "ec368129dcbad15f3b2662a20891c894b39ec6b1",
     "/assets/illustrations/study.svg": "e296b8f5d7dbc446f165bb9371bf853f3bcb8755",
     "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/index.html": "7678177b222a69b9f54593e834cd9cda9ce78dee",
-    "/main.a48e42d786cae2a5f21d.js": "e62fac4990c1a86728bfb13e360af15952edbdf7",
+    "/index.html": "517bfa3efd36000255fa34bab18a2507023da46a",
+    "/main.ae56e99d769a0d7306ab.js": "59145a335c47b02f102f0ef846ede49321e1da9f",
     "/polyfills.d1c7bf4a2ae7c3435f95.js": "ce68d153e9b9b6d26b625069c0ee99ae09c6f255",
     "/runtime.ec2944dd8b20ec099bf3.js": "b62956c2192bfe5516d6374e753773901ed50ec5",
     "/styles.2cd04144d68f1fa7d4f7.css": "f694b9674e0910fba787e1aef858e1d862cfbdea"

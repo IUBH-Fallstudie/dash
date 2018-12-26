@@ -97,7 +97,7 @@ async function auth(user, pass) {
       }
     };
   } catch (e) {
-    console.error(e);
+    // console.error(e);
     return false;
   }
 }

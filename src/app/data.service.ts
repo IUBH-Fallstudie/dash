@@ -59,13 +59,21 @@ export class DataService {
 
   public get activeMoodleCourses(): MoodleCourse[] {
     const activeCourses = [];
-    for (const torCourse of this.allCourses) {
-      for (const moodleCourse of this.moodleCourses) {
-        if (torCourse.id === moodleCourse.shortname && torCourse.status === 'A') {
+
+    for(const moodleCourse of this.moodleCourses) {
+      const matchingCourses = this.allCourses.filter(c => c.id === moodleCourse.shortname);
+      if (matchingCourses.length === 1 && matchingCourses[0].status === 'A') {
+        activeCourses.push(moodleCourse);
+      } else if (matchingCourses.length > 1) {
+        if (
+          (matchingCourses.filter(c => c.status === 'B').length === 0) &&
+          (matchingCourses.filter(c => c.status === 'A').length >= 1)
+        ) {
           activeCourses.push(moodleCourse);
         }
       }
     }
+
     return activeCourses;
   }
 

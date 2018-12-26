@@ -11,8 +11,11 @@
 
 mat-card {
   margin-bottom: 16px;
-  min-width: 340px;
-  max-width: 450px;
+  width: 350px;
+}
+
+mat-card-header {
+  overflow: hidden;
 }
 
 mat-card-subtitle {

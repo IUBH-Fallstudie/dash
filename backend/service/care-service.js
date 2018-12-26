@@ -19,8 +19,13 @@ module.exports = {
   }
 };
 
+
 function splitWeightedOverall(str) {
-  return str.split('Gewichteter Durchschnitt Gesamt:')[1].replace('\n', '');
+  if (str.split('Gewichteter Durchschnitt Gesamt:')[1] !== null) {
+    return str.split('Gewichteter Durchschnitt Gesamt:')[1].replace('\n', '');
+  } else {
+    return '';
+  }
 }
 
 function getTor($) {
