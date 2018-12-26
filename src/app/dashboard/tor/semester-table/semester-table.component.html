@@ -11,7 +11,7 @@
         <span class="passed" *ngIf="getStatus(module) === 'B'"><span class="badge">{{module.grade}} <mat-icon>grade</mat-icon></span></span>
         <span class="enrolled" *ngIf="getStatus(module) === 'A'"><span class="badge">aktiv <mat-icon>school</mat-icon></span></span>
         <span class="pending" *ngIf="getStatus(module) === '' || getStatus(module) === 'E'"><span class="badge">ausstehend</span></span>
-        <span class="exam-pending" *ngIf="getStatus(module) === 'EE'"><span class="badge">Klasur angemeldet</span></span>
+        <span class="exam-pending" *ngIf="getStatus(module) === 'EE'"><span class="badge">Klausur angemeldet</span></span>
         <span class="failed" *ngIf="getStatus(module) === 'D'"><span class="badge">durchgefallen</span></span>
         <span class="evaluating" *ngIf="getStatus(module) === 'M'"><span class="badge">in Benotung</span></span>
         <span class="misc" *ngIf="getStatus(module) === 'KP'"><span class="badge">Kombinationsprüfung</span></span>
