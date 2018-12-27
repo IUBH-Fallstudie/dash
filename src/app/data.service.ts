@@ -60,8 +60,9 @@ export class DataService {
   public get activeMoodleCourses(): MoodleCourse[] {
     const activeCourses = [];
 
-    for(const moodleCourse of this.moodleCourses) {
-      const matchingCourses = this.allCourses.filter(c => c.id === moodleCourse.shortname);
+    for (const moodleCourse of this.moodleCourses) {
+      const matchingCourses = this.allCourses.filter(c =>
+        c.id === moodleCourse.shortname);
       if (matchingCourses.length === 1 && matchingCourses[0].status === 'A') {
         activeCourses.push(moodleCourse);
       } else if (matchingCourses.length > 1) {
@@ -84,7 +85,7 @@ export class DataService {
       events = events.concat(course.events);
     }
     events.sort((a, b) => {
-      return b.timesort - a.timesort;
+      return a.timesort - b.timesort;
     });
     return events;
   }
