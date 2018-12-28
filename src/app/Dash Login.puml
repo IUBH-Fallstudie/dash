@@ -4,7 +4,7 @@ skinparam RectangleBackgroundColor white
 database Moodle order 7
 actor User
 
-User -> Login
+User -> Login: Anmeldedateneingabe
 Login -> DataService: Authenticate(user, password)
 DataService -> Server.js: http.post(user, password)
 Server.js -> myCampus.service: async authMoodle(req.body.user, req.body.pass)
