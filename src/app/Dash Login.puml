@@ -1,0 +1,26 @@
+@startuml
+skinparam monochrome reverse
+skinparam RectangleBackgroundColor white
+database Moodle order 7
+actor User
+
+User -> Login
+Login -> DataService: Authenticate(user, password)
+DataService -> Server.js: http.post(user, password)
+Server.js -> myCampus.service: async authMoodle(req.body.user, req.body.pass)
+myCampus.service -> Moodle:
+
+Moodle --> myCampus.service: SessionCookie
+myCampus.service --> Server.js: authentication
+
+alt authentication === false
+  Server.js --> DataService: Status 403
+  DataService --> Login: false
+  Login --> User: Snackbar("Erneut versuchen")
+else authentication
+  Server.js --> DataService: Status 200 && authentication
+  DataService --> DataService: UserInfoInitialisierung
+  DataService --> Login: true
+  Login --> Login: route
+end
+@enduml
