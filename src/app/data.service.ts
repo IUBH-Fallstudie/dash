@@ -4,11 +4,18 @@ import {Course, TranscriptOfRecords} from './classes/TranscriptOfRecords';
 import {MoodleCourse} from './classes/MoodleCourse';
 import {UserInfo} from './classes/UserInfo';
 
+
+/**
+ * Der DataService verwaltet alle Daten der Applikation.
+ * Er spricht die von Server bereitgestellten Schnittstellen an und speichert die Daten im LocalStorage.
+ * Außerdem sind hier stellt er einige Helper-Functions für Datentransformationen bereit.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
+  /** Objekt, welches als Basis der Daten agiert. Er wird bei Initialisierung */
   public _raw = {
     transcriptOfRecords: new TranscriptOfRecords([], 0),
     moodleCourses: [],
@@ -41,6 +48,7 @@ export class DataService {
     this.saveLocal();
   }
 
+  /** Liefere alle Kurse aus allen Semestern und Modulen in einem Array */
   public get allCourses(): Course[] {
     const courses = [];
     for (let semester of this._raw.transcriptOfRecords.tor) {
@@ -57,6 +65,11 @@ export class DataService {
     return this._raw.moodleCourses;
   }
 
+  /** Hole Moodle-Kurse, die derzeit bearbeitet werden.
+   * Hierfür wird der Status aus Care verglichen.
+   * myCampus zeigt auch bereits abgeschlossene Kurse als aktiv an.
+   * Dieses Problem wird damit umgangen.
+   * */
   public get activeMoodleCourses(): MoodleCourse[] {
     const activeCourses = [];
 
@@ -77,6 +90,9 @@ export class DataService {
     return activeCourses;
   }
 
+  /**
+   * Liefere alle Tutorien, die in der Zukunft liegen.
+   */
   public get upcomingActiveCourseEvents(): any[] {
     const activeCourses = this.activeMoodleCourses;
     let events = [];
@@ -89,6 +105,7 @@ export class DataService {
     return events;
   }
 
+  /** Gebe den Gesamtfortschritt des Studiums zurück */
   public get allProgress(): any {
     const semesters = this._raw.transcriptOfRecords.tor;
     let passedModules = 0;
@@ -121,8 +138,16 @@ export class DataService {
   public set moodleAppInstalled(moodleAppInstalled: boolean) {
     this._raw.moodleAppInstalled = moodleAppInstalled;
     this.saveLocal();
+    // Workaround für einen Bug, der die URL-Generierung zerschießt
+    setTimeout(() => {
+      window.location.reload();
+    }, 300);
   }
 
+  /**
+   * Hole alle benötigten Daten auf Care und myCampus und speichere diese
+   * persistent im LocalStorage
+   * */
   public fetchRawInfo(): void {
     this.http.get('/care/tor').subscribe(
       (res: any) => {
@@ -139,6 +164,12 @@ export class DataService {
     );
   }
 
+  /**
+   * Authentifiziere den User in Care und myCampus
+   * @param user
+   * @param password
+   * @param callback
+   */
   public authenticate(user: string, password: string, callback: any): void {
     this.http.post('/moodle/auth', {user: user, pass: password})
       .subscribe(
@@ -170,10 +201,12 @@ export class DataService {
 
   }
 
+  /** Speichere State im LocalStorage */
   private saveLocal(): void {
     window.localStorage.setItem('_raw', JSON.stringify(this._raw));
   }
 
+  /** Lade gespeicherte Daten aus dem LocalStorage */
   private loadLocal(): void {
     const localState = window.localStorage.getItem('_raw');
     if (localState !== null && localState !== undefined) {
@@ -181,6 +214,7 @@ export class DataService {
     }
   }
 
+  /** */
   public logout(): void {
     this._raw = undefined;
     window.localStorage.removeItem('_raw');

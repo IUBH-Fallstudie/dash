@@ -97,12 +97,6 @@ async function auth(user, pass) {
       }
     };
   } catch (e) {
-    // console.error(e);
     return false;
   }
 }
-
-// mod_quiz_get_quizzes_by_courses
-// core_completion_get_course_completion_status
-// mod_assign_get_assignments
-// core_enrol_get_users_courses

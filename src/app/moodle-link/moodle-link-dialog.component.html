@@ -4,6 +4,6 @@
   <p>Moodle für <a href="https://play.google.com/store/apps/details?id=com.moodle.moodlemobile" target="_blank">Android</a> und <a href="https://itunes.apple.com/de/app/moodle/id633359593" target="_blank">iOS</a></p>
 </div>
 <div mat-dialog-actions align="end">
-  <a target="_blank" [href]="data.url" (click)="onButtonClicked(false)"><button mat-button>Nein</button></a>
-  <a target="_blank" [href]="'moodle://link=' + data.url | safeUrl" (click)="onButtonClicked(true)"><button mat-button cdkFocusInitial>Ja</button></a>
+  <a target="_blank" (click)="onButtonClicked(false)"><button mat-button>Nein</button></a>
+  <a target="_blank" (click)="onButtonClicked(true)"><button mat-button cdkFocusInitial>Ja</button></a>
 </div>

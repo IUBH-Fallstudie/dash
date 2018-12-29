@@ -68,6 +68,8 @@ app.get('/care/tor', (req, res) => {
 
 app.use(express.static('dist'));
 
+app.use('/docs', express.static('doc'));
+
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 });

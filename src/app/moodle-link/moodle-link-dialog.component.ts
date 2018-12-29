@@ -17,5 +17,8 @@ export class MoodleLinkDialogComponent implements OnInit {
   onButtonClicked(appInstalled: boolean) {
     this.dataService.moodleAppInstalled = appInstalled;
     this.dialogRef.close();
+    const url = appInstalled ? 'moodle://link=' + this.data.url : this.data.url;
+    const win = window.open(url, '_blank');
+    win.focus();
   }
 }
